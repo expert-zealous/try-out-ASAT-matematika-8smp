@@ -1,151 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expert Zealous - Ujian Matematika</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://googleapis.com" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background: radial-gradient(ellipse at top, #1E3A5F 0%, #0F0F0F 60%, #1A1A2E 100%); color: #ffffff; min-height: 100vh; overflow-x: hidden; }
-    .screen-section { display: none; width: 100%; min-height: 100vh; padding: 20px; }
-    .screen-active { display: flex !important; flex-direction: column; justify-content: center; align-items: center; }
-    .login-container { width: 100%; max-width: 420px; background: rgba(26, 26, 46, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 16px; padding: 30px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); text-align: center; }
-    .logo-badge { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #DC2626, #D4AF37); margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 20px rgba(220, 38, 38, 0.4); }
-    .logo-badge span { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 22px; color: white; }
-    h1 { font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 700; background: linear-gradient(to right, #D4AF37, #FFFFFF, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
-    .sub-title { color: #a0aec0; font-size: 14px; margin-bottom: 2px; }
-    .address-text { color: #718096; font-size: 11px; margin-bottom: 25px; line-height: 1.4; }
-    .exam-title-badge { font-family: 'Orbitron', sans-serif; font-size: 15px; color: #D4AF37; margin-bottom: 20px; letter-spacing: 1px; font-weight: 700; }
-    .form-group { text-align: left; margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 13px; color: #cbd5e0; margin-bottom: 6px; font-weight: 500; }
-    .form-control { width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #4a5568; background-color: #ffffff !important; color: #000000 !important; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; transition: border 0.2s; }
-    .form-control:focus { border-color: #D4AF37; outline: none; box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
-    .btn-submit { width: 100%; padding: 14px; border: none; border-radius: 8px; background: linear-gradient(to right, #DC2626, #991B1B); color: white; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; box-shadow: 0 0 15px rgba(220, 38, 38, 0.3); transition: transform 0.1s; }
-    .btn-submit:active { transform: scale(0.98); }
-    .btn-submit:disabled { background: #4a5568 !important; cursor: not-allowed; box-shadow: none; }
-    
-    /* LAYOUT EXAM SYSTEM */
-    .exam-layout { width: 100%; max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; min-height: 90vh; justify-content: flex-start !important; padding-top: 20px; }
-    .exam-header { background: rgba(26, 26, 46, 0.85); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
-    .exam-body { display: flex; flex-direction: column; gap: 20px; width: 100%; }
-    @media (min-width: 768px) { .exam-body { flex-direction: row; } }
-    .panel-side { width: 100%; background: rgba(26, 26, 46, 0.85); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 20px; }
-    @media (min-width: 768px) { .panel-side { width: 260px; flex-shrink: 0; } }
-    .panel-main { flex-grow: 1; background: rgba(26, 26, 46, 0.85); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 30px; }
-    .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 12px; }
-    .nav-btn { width: 100%; aspect-ratio: 1; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; background: #ffffff; color: #0F0F0F; transition: all 0.2s; }
-    .options-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-    .option-button { width: 100%; text-align: left; padding: 14px 20px; border-radius: 8px; border: 1px solid #2d3748; background: rgba(15, 15, 15, 0.6); color: #cbd5e0; cursor: pointer; transition: all 0.15s; font-size: 15px; }
-    .option-button:hover { border-color: #718096; }
-    .status-active { background: #D4AF37 !important; color: #0F0F0F !important; border: 2px solid #ffffff; }
-    .status-answered { background: #16a34a !important; color: #ffffff !important; }
-    .status-unanswered { background: #ffffff !important; color: #0F0F0F !important; }
-    .btn-action-container { display: flex; justify-content: space-between; margin-top: 30px; }
-    .btn-secondary { padding: 10px 22px; background: transparent; border: 1px solid #4a5568; color: #cbd5e0; border-radius: 6px; cursor: pointer; font-weight: 500; }
-    .btn-secondary:hover { border-color: #D4AF37; color: #D4AF37; }
-    .btn-primary { padding: 10px 24px; background: #1E3A5F; border: none; color: white; border-radius: 6px; cursor: pointer; font-weight: 500; }
-    .btn-primary:hover { background: #2b5284; }
-    .btn-finish { padding: 8px 20px; background: linear-gradient(to right, #D4AF37, #B5942B); border: none; color: #0F0F0F; font-weight: 700; border-radius: 6px; cursor: pointer; }
-    .img-container img { max-width: 100%; max-height: 260px; border-radius: 8px; border: 1px solid #4a5568; background: #ffffff; padding: 6px; margin: 15px 0; }
-  </style>
- </head>
- <body>
+<title>Ujian</title>
 
-  <div id="app" style="width: 100%;">
-   
-   <!-- SCREEN 1: LOGIN -->
-   <div id="login-screen" class="screen-section screen-active">
-    <div class="login-container">
-     <div class="logo-badge"><span>EZ</span></div>
-     <h1>Expert Zealous</h1>
-     <p class="sub-title">Les Private Matematika</p>
-     <p class="address-text">Jl. Waru G1 No.01, Kel. Rembang, Kec. Sananwetan, Kota Blitar</p>
-     <div class="exam-title-badge">UJIAN MATEMATIKA</div>
-     
-     <form id="login-form">
-      <div class="form-group">
-       <label>Nama Lengkap</label>
-       <input type="text" id="student-name" class="form-control" required placeholder="Masukkan nama lengkap">
-      </div>
-      <div class="form-group">
-       <label>Kelas</label>
-       <select id="student-class" class="form-control" required>
-        <option value="">Pilih Kelas</option>
-        <option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-       </select>
-      </div>
-      <div class="form-group">
-       <label>Nomor Peserta (Password)</label>
-       <input type="text" id="participant-num" class="form-control" required placeholder="Masukkan nomor peserta resmi">
-      </div>
-      <button type="submit" id="btn-login-submit" class="btn-submit">Mulai Ujian</button>
-     </form>
-    </div>
-   </div>
+<style>
 
-   <!-- SCREEN 2: LAYAR SOAL UTAMA -->
-   <div id="exam-screen" class="screen-section">
-    <div class="exam-layout">
-     <header class="exam-header">
-      <div style="font-family:'Orbitron'; font-weight:700; color:#D4AF37;">EZ SYSTEM</div>
-      <button class="btn-finish" onclick="selesaiUjian()">Kirim Jawaban</button>
-     </header>
-     
-     <div class="exam-body">
-      <aside class="panel-side">
-       <p style="font-size:12px; color:#a0aec0; text-transform:uppercase; letter-spacing:1px;">Navigasi Nomor</p>
-       <div id="nav-grid" class="nav-grid"></div>
-      </aside>
-      
-      <main class="panel-main">
-       <div id="q-number" style="font-family:'Orbitron'; color:#D4AF37; font-weight:700; font-size:18px; margin-bottom:15px;">Soal Nomor 1</div>
-       <div id="q-text" style="font-size:16px; line-height:1.6; color:#e2e8f0;">Memuat teks soal...</div>
-       <div id="q-image" class="img-container" style="text-align:center;"></div>
-       <div id="q-options" class="options-list"></div>
-       
-       <div class="btn-action-container">
-        <button class="btn-secondary" onclick="soalSebelumnya()">Sebelumnya</button>
-        <button class="btn-primary" onclick="soalBerikutnya()">Selanjutnya</button>
-       </div>
-      </main>
-     </div>
-    </div>
-   </div>
+body{
+    font-family:Arial;
+    padding:30px;
+}
 
-   <!-- SCREEN 3: LAYAR HASIL SKOR AKHIR -->
-   <div id="result-screen" class="screen-section">
-    <div class="login-container" style="border-color:#D4AF37; margin: 0 auto;">
-     <h2 style="font-family:'Orbitron'; color:#D4AF37; font-size:24px; margin-bottom:10px;">Ujian Selesai!</h2>
-     <p style="color:#cbd5e0; font-size:14px; margin-bottom:25px;">Data jawaban Anda telah berhasil disimpan ke server Expert Zealous.</p>
-     <div style="background:rgba(15,15,15,0.6); padding:20px; border-radius:12px; border:1px solid rgba(212,175,55,0.2); margin-bottom:25px;">
-       <div style="font-size:12px; color:#a0aec0; text-transform:uppercase;">Skor Evaluasi</div>
-       <div id="skor-akhir" style="font-family:'Orbitron'; font-size:56px; font-weight:900; color:#ffffff; margin-top:5px;">0</div>
-     </div>
-     <button class="btn-submit" onclick="location.reload()">Keluar Ujian</button>
-    </div>
-   </div>
+</style>
 
-  </div>
+</head>
+<body>
 
-  <script>
-    // Database internal terenkripsi murni bebas dari malfungsi server eksternal
-    const DAFTAR_PESERTA_VALID = ["81001", "81002", "81003", "81004", "81005"];
+<h1>UJIAN BERHASIL DIBUKA</h1>
 
-    const kumpulanSoal = [
-      {
-        teks: "Nilai x yang memenuhi persamaan linear satu variabel 2x + 7 = 15 adalah...",
-        imgUrl: "",
-        a: "x = 2",
-        b: "x = 3",
-        c: "x = 4",
-        d: "x = 5",
-        kunci: "c"
-      },
-      {
-        teks: "Sebuah segitiga siku-siku memiliki panjang alas 6 cm dan tinggi 8 cm. Berapakah panjang sisi miring (hipotenusa) segitiga tersebut?",
-        imgUrl: "",
-        a: "9 cm",
-        b: "10 cm",
-        c: "11 cm",
+<h3 id="peserta"></h3>
+
+<script>
+
+const nama = localStorage.getItem("namaPeserta");
+const nomor = localStorage.getItem("nomorPeserta");
+
+document.getElementById("peserta").innerHTML =
+"Peserta : " + nama + " (" + nomor + ")";
+
+</script>
+
+</body>
+</html>
