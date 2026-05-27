@@ -6,9 +6,12 @@
   <title>Expert Zealous - Ujian Matematika</title>
   
   <script>
-    // Link Google Sheets resmi milik Anda (Tertanam Permanen)
+    // =========================================================================
+    // 💡 LINK DATABASE GOOGLE SHEETS RESMI MILIK ANDA (TERPASANG PERMANEN)
+    // =========================================================================
     const URL_CSV_SOAL = "https://google.com";
     const URL_CSV_PESERTA = "https://google.com";
+    // =========================================================================
   </script>
 
   <link href="https://googleapis.com" rel="stylesheet">
@@ -129,15 +132,3 @@
        <div id="skor-akhir" style="font-family:'Orbitron'; font-size:56px; font-weight:900; color:#ffffff; margin-top:5px;">0</div>
      </div>
      <button class="btn-submit" onclick="location.reload()">Keluar Ujian</button>
-    </div>
-   </div>
-
-  </div>
-
-  <script>
-    let kumpulanSoal = [];
-    let indeksSekarang = 0;
-    let jawabanSiswa = {};
-
-    // PARSER DATA SPREADSHEET INDONESIA (MENDUKUNG PEMBATAS KOMA DAN TITIK KOMA SECARA MUTLAK)
-    function potongBarisTabel(teks) {
