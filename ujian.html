@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ujian</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    padding:30px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>UJIAN BERHASIL DIBUKA</h1>
+
+<h3 id="peserta"></h3>
+
+<script>
+
+const nama = localStorage.getItem("namaPeserta");
+const nomor = localStorage.getItem("nomorPeserta");
+
+document.getElementById("peserta").innerHTML =
+"Peserta : " + nama + " (" + nomor + ")";
+
+</script>
+
+</body>
+</html>
