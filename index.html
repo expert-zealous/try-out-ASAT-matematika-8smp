@@ -6,9 +6,12 @@
   <title>Expert Zealous - Ujian Matematika</title>
   
   <script>
-    // Link database Google Sheets resmi milik Anda (Tertanam Permanen)
+    // =========================================================================
+    // 💡 DATABASE INTERNAL MANDIRI (ANTI-BLOCK & ANTI-FAIL RESISTANT)
+    // =========================================================================
+    const DAFTAR_PESERTA_VALID = ["81001", "81002", "81003", "81004", "81005", "A8001"];
     const URL_CSV_SOAL = "https://google.com";
-    const URL_CSV_PESERTA = "https://google.com";
+    // =========================================================================
   </script>
 
   <link href="https://googleapis.com" rel="stylesheet">
@@ -60,7 +63,7 @@
 
   <div id="app" style="width: 100%;">
    
-   <!-- LAYAR 1: LOGIN -->
+   <!-- SCREEN 1: LOGIN -->
    <div id="login-screen" class="screen-section screen-active">
     <div class="login-container">
      <div class="logo-badge"><span>EZ</span></div>
@@ -90,7 +93,7 @@
     </div>
    </div>
 
-   <!-- LAYAR 2: SOAL UJIAN UTAMA -->
+   <!-- SCREEN 2: LAYAR SOAL UTAMA -->
    <div id="exam-screen" class="screen-section">
     <div class="exam-layout">
      <header class="exam-header">
@@ -119,7 +122,7 @@
     </div>
    </div>
 
-   <!-- LAYAR 3: HASIL SKOR AKHIR -->
+   <!-- SCREEN 3: LAYAR HASIL SKOR AKHIR -->
    <div id="result-screen" class="screen-section">
     <div class="login-container" style="border-color:#D4AF37; margin: 0 auto;">
      <h2 style="font-family:'Orbitron'; color:#D4AF37; font-size:24px; margin-bottom:10px;">Ujian Selesai!</h2>
@@ -137,6 +140,3 @@
   <script>
     let kumpulanSoal = [];
     let indeksSekarang = 0;
-    let jawabanSiswa = {};
-
-    // PARSER CSV KUAT YANG SEKALIGUS MEMBERSIHKAN ELEMEN DAN TANDA KUTIP DUA SPREADSHEET INDONESIA
