@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expert Zealous - Ujian Matematika</title>
+  
+  <script>
+    // =========================================================================
+    // 💡 FORMAT DITRANSFORMASI KE API VISUALIZATION AGAR TEMBUS BLOKIRAN GOOGLE
+    // =========================================================================
+    const SHEET_ID = "1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN";
+    const URL_SOAL = `https://google.com{SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=0`;
+    const URL_PESERTA = `https://google.com{SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=39316765`;
+    // =========================================================================
+  </script>
 
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
@@ -26,7 +36,6 @@
     .btn-submit:active { transform: scale(0.98); }
     .btn-submit:disabled { background: #4a5568 !important; cursor: not-allowed; box-shadow: none; }
     
-    /* LAYOUT EXAM SYSTEM */
     .exam-layout { width: 100%; max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; min-height: 90vh; justify-content: flex-start !important; padding-top: 20px; }
     .exam-header { background: rgba(26, 26, 46, 0.85); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
     .exam-body { display: flex; flex-direction: column; gap: 20px; width: 100%; }
@@ -55,7 +64,7 @@
 
   <div id="app" style="width: 100%;">
    
-   <!-- SCREEN 1: LOGIN -->
+   <!-- LAYAR 1: LOGIN -->
    <div id="login-screen" class="screen-section screen-active">
     <div class="login-container">
      <div class="logo-badge"><span>EZ</span></div>
@@ -85,7 +94,7 @@
     </div>
    </div>
 
-   <!-- SCREEN 2: LAYAR SOAL UTAMA -->
+   <!-- LAYAR 2: LAYAR UTAMA SOAL -->
    <div id="exam-screen" class="screen-section">
     <div class="exam-layout">
      <header class="exam-header">
@@ -114,7 +123,7 @@
     </div>
    </div>
 
-   <!-- SCREEN 3: LAYAR HASIL SKOR AKHIR -->
+   <!-- LAYAR 3: LAYAR HASIL AKHIR -->
    <div id="result-screen" class="screen-section">
     <div class="login-container" style="border-color:#D4AF37; margin: 0 auto;">
      <h2 style="font-family:'Orbitron'; color:#D4AF37; font-size:24px; margin-bottom:10px;">Ujian Selesai!</h2>
@@ -130,19 +139,4 @@
   </div>
 
   <script>
-    // =========================================================================
-    // 🔒 DATABASE MANDIRI PERMANEN 100% AMAN TANPA BLOKIRAN SERVER GOOGLE
-    // =========================================================================
-    const DAFTAR_PESERTA_VALID = ["81001", "81002", "81003", "81004", "81005"];
-
-    // Bank Soal Matematika resmi milik Anda (Sudah diekstrak langsung ke sistem internal)
-    const kumpulanSoal = [
-      {
-        teks: "Nilai x yang memenuhi persamaan linear satu variabel 2x + 7 = 15 adalah...",
-        imgUrl: "",
-        a: "x = 2",
-        b: "x = 3",
-        c: "x = 4",
-        d: "x = 5",
-        kunci: "c"
-      },
+    let kumpulanSoal = [];
