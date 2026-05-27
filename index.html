@@ -7,13 +7,10 @@
   
   <script>
     // =========================================================================
-    // 💡 DATABASE INTEGRAL MANDIRI (MENCEGAH ERROR TIMEOUT GOOGLE SHEETS)
+    // 💡 LINK DATABASE GOOGLE SHEETS RESMI MILIK ANDA (TERPASANG PERMANEN)
     // =========================================================================
-    // Anda bisa menambah nomor peserta baru secara manual di bawah ini kapan saja:
-    const DAFTAR_PESERTA_VALID = ["81001", "81002", "81003", "81004", "81005"];
-    
-    // Link database lembar soal matematika Anda
     const URL_CSV_SOAL = "https://google.com";
+    const URL_CSV_PESERTA = "https://google.com";
     // =========================================================================
   </script>
 
@@ -37,6 +34,8 @@
     .btn-submit { width: 100%; padding: 14px; border: none; border-radius: 8px; background: linear-gradient(to right, #DC2626, #991B1B); color: white; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; box-shadow: 0 0 15px rgba(220, 38, 38, 0.3); transition: transform 0.1s; }
     .btn-submit:active { transform: scale(0.98); }
     .btn-submit:disabled { background: #4a5568 !important; cursor: not-allowed; box-shadow: none; }
+    
+    /* LAYOUT HALAMAN UJIAN UTAMA */
     .exam-layout { width: 100%; max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; min-height: 90vh; justify-content: flex-start !important; padding-top: 20px; }
     .exam-header { background: rgba(26, 26, 46, 0.85); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
     .exam-body { display: flex; flex-direction: column; gap: 20px; width: 100%; }
