@@ -7,10 +7,13 @@
   
   <script>
     // =========================================================================
-    // 💡 LINK DATABASE GOOGLE SHEETS RESMI MILIK ANDA (TERPASANG PERMANEN)
+    // 💡 DATABASE INTEGRAL MANDIRI (MENCEGAH ERROR TIMEOUT GOOGLE SHEETS)
     // =========================================================================
+    // Anda bisa menambah nomor peserta baru secara manual di bawah ini kapan saja:
+    const DAFTAR_PESERTA_VALID = ["81001", "81002", "81003", "81004", "81005"];
+    
+    // Link database lembar soal matematika Anda
     const URL_CSV_SOAL = "https://google.com";
-    const URL_CSV_PESERTA = "https://google.com";
     // =========================================================================
   </script>
 
@@ -34,7 +37,6 @@
     .btn-submit { width: 100%; padding: 14px; border: none; border-radius: 8px; background: linear-gradient(to right, #DC2626, #991B1B); color: white; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; box-shadow: 0 0 15px rgba(220, 38, 38, 0.3); transition: transform 0.1s; }
     .btn-submit:active { transform: scale(0.98); }
     .btn-submit:disabled { background: #4a5568 !important; cursor: not-allowed; box-shadow: none; }
-    
     .exam-layout { width: 100%; max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; min-height: 90vh; justify-content: flex-start !important; padding-top: 20px; }
     .exam-header { background: rgba(26, 26, 46, 0.85); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; }
     .exam-body { display: flex; flex-direction: column; gap: 20px; width: 100%; }
@@ -63,7 +65,7 @@
 
   <div id="app" style="width: 100%;">
    
-   <!-- LAYAR 1: LOGIN -->
+   <!-- SCREEN 1: LOGIN -->
    <div id="login-screen" class="screen-section screen-active">
     <div class="login-container">
      <div class="logo-badge"><span>EZ</span></div>
@@ -93,7 +95,7 @@
     </div>
    </div>
 
-   <!-- LAYAR 2: SOAL UJIAN -->
+   <!-- SCREEN 2: LAYAR SOAL UTAMA -->
    <div id="exam-screen" class="screen-section">
     <div class="exam-layout">
      <header class="exam-header">
@@ -122,7 +124,7 @@
     </div>
    </div>
 
-   <!-- LAYAR 3: HASIL SKOR AKHIR -->
+   <!-- SCREEN 3: LAYAR HASIL SKOR AKHIR -->
    <div id="result-screen" class="screen-section">
     <div class="login-container" style="border-color:#D4AF37; margin: 0 auto;">
      <h2 style="font-family:'Orbitron'; color:#D4AF37; font-size:24px; margin-bottom:10px;">Ujian Selesai!</h2>
@@ -131,7 +133,3 @@
        <div style="font-size:12px; color:#a0aec0; text-transform:uppercase;">Skor Evaluasi</div>
        <div id="skor-akhir" style="font-family:'Orbitron'; font-size:56px; font-weight:900; color:#ffffff; margin-top:5px;">0</div>
      </div>
-     <button class="btn-submit" onclick="location.reload()">Keluar Ujian</button>
-    </div>
-   </div>
-
