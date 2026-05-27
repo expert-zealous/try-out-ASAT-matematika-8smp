@@ -60,7 +60,7 @@
 
   <div id="app" style="width: 100%;">
    
-   <!-- SCREEN 1: HALAMAN LOGIN -->
+   <!-- LAYAR 1: LOGIN -->
    <div id="login-screen" class="screen-section screen-active">
     <div class="login-container">
      <div class="logo-badge"><span>EZ</span></div>
@@ -90,7 +90,7 @@
     </div>
    </div>
 
-   <!-- SCREEN 2: HALAMAN LEMBAR SOAL UTAMA -->
+   <!-- LAYAR 2: SOAL UJIAN UTAMA -->
    <div id="exam-screen" class="screen-section">
     <div class="exam-layout">
      <header class="exam-header">
@@ -119,7 +119,7 @@
     </div>
    </div>
 
-   <!-- SCREEN 3: HALAMAN HASIL SKOR AKHIR -->
+   <!-- LAYAR 3: HASIL SKOR AKHIR -->
    <div id="result-screen" class="screen-section">
     <div class="login-container" style="border-color:#D4AF37; margin: 0 auto;">
      <h2 style="font-family:'Orbitron'; color:#D4AF37; font-size:24px; margin-bottom:10px;">Ujian Selesai!</h2>
@@ -139,5 +139,4 @@
     let indeksSekarang = 0;
     let jawabanSiswa = {};
 
-    // PARSER CSV MULTI-SEPARATOR AMAN KHUSUS UNTUK DATA LINK SOAL
-    function uraiCSVSoal(text) {
+    // PARSER CSV KUAT YANG SEKALIGUS MEMBERSIHKAN ELEMEN DAN TANDA KUTIP DUA SPREADSHEET INDONESIA
