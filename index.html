@@ -4,31 +4,128 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ujian</title>
+<title>Login Ujian</title>
 
 <style>
 
 body{
-    font-family:Arial;
+    font-family: Arial;
+    background:#f0f2f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    background:white;
     padding:30px;
+    border-radius:10px;
+    width:300px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:15px;
+    background:#2196f3;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#1976d2;
 }
 
 </style>
-
 </head>
 <body>
 
-<h1>UJIAN BERHASIL DIBUKA</h1>
+<div class="box">
 
-<h3 id="peserta"></h3>
+<h2>Login Peserta</h2>
+
+<input type="text" id="nomor" placeholder="Nomor Peserta">
+
+<input type="text" id="nama" placeholder="Nama Peserta">
+
+<button onclick="mulaiUjian()">Mulai Ujian</button>
+
+</div>
 
 <script>
 
-const nama = localStorage.getItem("namaPeserta");
-const nomor = localStorage.getItem("nomorPeserta");
+const csvPeserta = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=39316765&single=true&output=csv";
 
-document.getElementById("peserta").innerHTML =
-"Peserta : " + nama + " (" + nomor + ")";
+async function mulaiUjian(){
+
+    const nomor = document.getElementById("nomor").value.trim();
+    const nama = document.getElementById("nama").value.trim().toLowerCase();
+
+    if(nomor === "" || nama === ""){
+        alert("Isi nomor dan nama peserta");
+        return;
+    }
+
+    try{
+
+        const response = await fetch(csvPeserta);
+
+        const data = await response.text();
+
+        const rows = data.split("\n").slice(1);
+
+        let valid = false;
+
+        rows.forEach(row => {
+
+            const cols = row.split(",");
+
+            const nomorSheet = cols[0]?.trim();
+            const namaSheet = cols[1]?.trim().toLowerCase();
+
+            if(nomor === nomorSheet && nama === namaSheet){
+                valid = true;
+            }
+
+        });
+
+        if(valid){
+
+            localStorage.setItem("namaPeserta", nama);
+            localStorage.setItem("nomorPeserta", nomor);
+
+            window.location.href = "ujian.html";
+
+        }else{
+
+            alert("Peserta tidak terdaftar");
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+        alert("Gagal mengambil data peserta");
+
+    }
+
+}
 
 </script>
 
