@@ -437,11 +437,6 @@ body{
 const csvSoal =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=0&single=true&output=csv";
 
-const kunciJawaban = [
-0,1,2,3,0,1,2,3,0,1,
-2,3,0,1,2,3,0,1,2,3
-];
-
 let soal = [];
 let indexSoal = 0;
 let jawabanPeserta = [];
@@ -465,13 +460,17 @@ async function loadSoal(){
 
             teks:col[0],
             gambar:col[1],
+
             a:col[2],
             b:col[3],
             c:col[4],
-            d:col[5]
+            d:col[5],
 
-        };
+            kunci:col[6],
 
+            skor:Number(col[7])
+
+         };
     });
 
     buatNavigasi();
@@ -588,15 +587,26 @@ function updateNavigasiAktif(){
 
 function selesaiUjian(){
 
-    let benar = 0;
+    let totalSkor = 0;
+
+    let skorDidapat = 0;
 
     let salah = [];
 
-    for(let i=0;i<kunciJawaban.length;i++){
+    for(let i=0;i<soal.length;i++){
 
-        if(jawabanPeserta[i]===kunciJawaban[i]){
+        totalSkor += soal[i].skor;
 
-            benar++;
+        let jawabanHuruf = "";
+
+        if(jawabanPeserta[i]==0) jawabanHuruf="A";
+        if(jawabanPeserta[i]==1) jawabanHuruf="B";
+        if(jawabanPeserta[i]==2) jawabanHuruf="C";
+        if(jawabanPeserta[i]==3) jawabanHuruf="D";
+
+        if(jawabanHuruf==soal[i].kunci){
+
+            skorDidapat += soal[i].skor;
 
         }else{
 
@@ -606,8 +616,8 @@ function selesaiUjian(){
 
     }
 
-    let skor =
-    Math.round((benar/kunciJawaban.length)*100);
+    let nilai =
+    Math.round((skorDidapat/totalSkor)*100);
 
     alert(
 `
@@ -615,9 +625,9 @@ Nama Peserta : ${nama}
 
 Nomor Peserta : ${nomor}
 
-Skor : ${skor}
+Nilai : ${nilai}
 
-Jawaban Benar : ${benar}
+Skor Didapat : ${skorDidapat}
 
 Jawaban Salah :
 ${salah.join(", ")}
@@ -625,7 +635,6 @@ ${salah.join(", ")}
     );
 
 }
-
 let waktu = 90*60;
 
 function updateTimer(){
