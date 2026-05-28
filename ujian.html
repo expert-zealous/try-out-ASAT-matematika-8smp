@@ -17,7 +17,7 @@
 
 body{
 
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:linear-gradient(135deg,#eef2ff,#f8fafc);
 
 }
@@ -28,11 +28,11 @@ body{
 
     background:linear-gradient(135deg,#0f172a,#1e293b);
 
-    padding:16px;
+    padding:18px;
 
-    border-radius:0 0 24px 24px;
+    border-radius:0 0 25px 25px;
 
-    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    box-shadow:0 4px 15px rgba(0,0,0,0.25);
 
     position:sticky;
     top:0;
@@ -43,9 +43,10 @@ body{
 .header-content{
 
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:12px;
+    align-items:center;
+
+    gap:15px;
 
 }
 
@@ -53,13 +54,14 @@ body{
 
     display:flex;
     align-items:center;
-    gap:12px;
+
+    gap:15px;
 
 }
 
 .logo{
 
-    width:120px;
+    width:220px;
     object-fit:contain;
 
 }
@@ -74,9 +76,13 @@ body{
 .brand-title{
 
     color:#ffd700;
-    font-size:28px;
+
+    font-size:30px;
+
     font-weight:bold;
+
     font-style:italic;
+
     line-height:1.1;
 
 }
@@ -84,16 +90,21 @@ body{
 .brand-sub{
 
     color:white;
-    font-size:15px;
-    margin-top:4px;
+
+    font-size:16px;
+
+    margin-top:5px;
 
 }
 
 .timer{
 
     color:#ffd700;
-    font-size:38px;
+
+    font-size:40px;
+
     font-weight:bold;
+
     font-style:italic;
 
 }
@@ -102,12 +113,12 @@ body{
 
 .container{
 
-    padding:18px;
-
     display:flex;
     flex-wrap:wrap;
 
     gap:18px;
+
+    padding:18px;
 
 }
 
@@ -124,9 +135,9 @@ body{
 
     background:white;
 
-    border-radius:24px;
-
     padding:24px;
+
+    border-radius:25px;
 
     box-shadow:0 4px 14px rgba(0,0,0,0.08);
 
@@ -134,12 +145,23 @@ body{
 
 #nomorSoal{
 
+    font-size:42px;
+
+    font-style:italic;
+
     color:#0f172a;
 
     margin-bottom:20px;
 
-    font-size:38px;
-    font-style:italic;
+}
+
+#teksSoal{
+
+    font-size:28px;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
 
 }
 
@@ -149,13 +171,15 @@ body{
 
     border-radius:18px;
 
+    margin-bottom:20px;
+
 }
 
 /* PILIHAN */
 
 #pilihanJawaban{
 
-    margin-top:22px;
+    margin-top:15px;
 
 }
 
@@ -167,12 +191,14 @@ body{
 
     padding:18px;
 
-    border-radius:16px;
+    border-radius:18px;
 
-    margin-top:14px;
+    margin-top:15px;
 
     font-size:22px;
+
     font-weight:bold;
+
     font-style:italic;
 
     cursor:pointer;
@@ -206,9 +232,9 @@ body{
 
     background:white;
 
-    border-radius:24px;
-
     padding:24px;
+
+    border-radius:25px;
 
     box-shadow:0 4px 14px rgba(0,0,0,0.08);
 
@@ -219,25 +245,27 @@ body{
 
 .info{
 
-    line-height:1.8;
+    margin-bottom:22px;
 
-    margin-bottom:20px;
+    line-height:1.8;
 
 }
 
 .info h2{
 
     color:#0f172a;
+
     margin-bottom:10px;
 
 }
 
-/* NAVIGASI */
-
 .nav-title{
 
-    font-size:24px;
+    font-size:26px;
+
     font-weight:bold;
+
+    font-style:italic;
 
     margin-bottom:15px;
 
@@ -248,6 +276,7 @@ body{
 .nav-soal{
 
     display:grid;
+
     grid-template-columns:repeat(5,1fr);
 
     gap:10px;
@@ -265,6 +294,7 @@ body{
     background:#cbd5e1;
 
     font-size:18px;
+
     font-weight:bold;
 
     cursor:pointer;
@@ -282,6 +312,7 @@ body{
 .nav-btn.active{
 
     background:gold;
+
     color:black;
 
 }
@@ -289,6 +320,7 @@ body{
 .nav-btn.answered{
 
     background:#22c55e;
+
     color:white;
 
 }
@@ -312,6 +344,7 @@ body{
     color:white;
 
     font-size:20px;
+
     font-weight:bold;
 
     cursor:pointer;
@@ -325,6 +358,7 @@ body{
     .header-content{
 
         flex-direction:column;
+
         text-align:center;
 
     }
@@ -337,7 +371,7 @@ body{
 
     .logo{
 
-        width:180px;
+        width:250px;
 
     }
 
@@ -362,6 +396,18 @@ body{
     .kotak-sidebar{
 
         position:static;
+
+    }
+
+    #nomorSoal{
+
+        font-size:30px;
+
+    }
+
+    #teksSoal{
+
+        font-size:22px;
 
     }
 
@@ -415,9 +461,11 @@ body{
 
         <div class="kotak-soal">
 
-            <h1 id="nomorSoal">
+            <div id="nomorSoal">
                 Soal Nomor 1
-            </h1>
+            </div>
+
+            <div id="teksSoal"></div>
 
             <img id="gambarSoal">
 
@@ -459,7 +507,8 @@ body{
 
 <script>
 
-const csvSoal = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=0&single=true&output=csv";
+const csvSoal =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=0&single=true&output=csv";
 
 let soal = [];
 let indexSoal = 0;
@@ -485,11 +534,12 @@ async function loadSoal(){
 
         return{
 
-            gambar:col[0],
-            a:col[1],
-            b:col[2],
-            c:col[3],
-            d:col[4]
+            teks:col[0],
+            gambar:col[1],
+            a:col[2],
+            b:col[3],
+            c:col[4],
+            d:col[5]
 
         };
 
@@ -507,6 +557,9 @@ function tampilSoal(){
 
     document.getElementById("nomorSoal").innerHTML =
     "Soal Nomor "+(indexSoal+1);
+
+    document.getElementById("teksSoal").innerHTML =
+    s.teks;
 
     document.getElementById("gambarSoal").src =
     s.gambar;
