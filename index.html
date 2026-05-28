@@ -4,66 +4,170 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Login Ujian</title>
+<title>Expert Zealous CBT</title>
 
 <style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Arial;
-    background:navy;
+    font-family:Arial;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0d47a1,#1976d2);
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    overflow:hidden;
+    padding:20px;
 }
 
-.box{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    width:300px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
+.background{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50%;
+    top:-150px;
+    right:-150px;
 }
 
-h2{
+.background2{
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50%;
+    bottom:-120px;
+    left:-120px;
+}
+
+.card{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
     text-align:center;
+    color:white;
+}
+
+.logo{
+    width:180px;
+    margin:auto;
+    display:block;
+}
+
+.motto{
+    margin-top:10px;
+    font-size:26px;
+    font-style:italic;
+    font-weight:bold;
+    color:gold;
+}
+
+.sub{
+    margin-top:8px;
+    font-size:16px;
+    opacity:0.95;
 }
 
 input{
     width:100%;
-    padding:10px;
-    margin-top:10px;
-    box-sizing:border-box;
+    padding:15px;
+    margin-top:18px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    outline:none;
 }
 
 button{
     width:100%;
-    padding:10px;
-    margin-top:15px;
-    background:#2196f3;
-    color:white;
+    padding:15px;
+    margin-top:22px;
     border:none;
+    border-radius:14px;
+    background:gold;
+    color:#0d47a1;
+    font-size:18px;
+    font-weight:bold;
     cursor:pointer;
-    font-size:16px;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#1976d2;
+    transform:scale(1.03);
+}
+
+.running{
+    margin-top:25px;
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+    height:25px;
+}
+
+.running span{
+    position:absolute;
+    animation:jalan 18s linear infinite;
+    color:white;
+    font-size:14px;
+    opacity:0.9;
+}
+
+@keyframes jalan{
+    0%{
+        transform:translateX(100%);
+    }
+
+    100%{
+        transform:translateX(-100%);
+    }
 }
 
 </style>
 </head>
 <body>
 
-<div class="box">
+<div class="background"></div>
+<div class="background2"></div>
 
-<h2>Login Peserta</h2>
+<div class="card">
 
-<input type="text" id="nomor" placeholder="Nomor Peserta">
+<img class="logo"
+src="https://drive.google.com/thumbnail?sz=w1000&id=1eOURv9E9HRTqPU9alLUp4ILvgfJbavN8">
 
-<input type="text" id="nama" placeholder="Nama Peserta">
+<div class="motto">
+Jagonya Matematika
+</div>
 
-<button onclick="mulaiUjian()">Mulai Ujian</button>
+<div class="sub">
+Les Private Matematika
+</div>
+
+<input type="text" id="nomor"
+placeholder="Nomor Peserta">
+
+<input type="text" id="nama"
+placeholder="Nama Peserta">
+
+<button onclick="mulaiUjian()">
+Mulai Ujian
+</button>
+
+<div class="running">
+<span>
+Jl. Waru Gang 1 No 1 • Kelurahan Rembang • Kecamatan Sananwetan • Kota Blitar • CP: 085850674833
+</span>
+</div>
 
 </div>
 
@@ -77,8 +181,10 @@ async function mulaiUjian(){
     const nama = document.getElementById("nama").value.trim().toLowerCase();
 
     if(nomor === "" || nama === ""){
+
         alert("Isi nomor dan nama peserta");
         return;
+
     }
 
     try{
@@ -91,25 +197,27 @@ async function mulaiUjian(){
 
         let valid = false;
 
-        rows.forEach(row => {
+        rows.forEach(row=>{
 
             const cols = row.split(",");
 
             const nomorSheet = cols[0]?.trim();
             const namaSheet = cols[1]?.trim().toLowerCase();
 
-            if(nomor === nomorSheet && nama === namaSheet){
+            if(nomor===nomorSheet && nama===namaSheet){
+
                 valid = true;
+
             }
 
         });
 
         if(valid){
 
-            localStorage.setItem("namaPeserta", nama);
-            localStorage.setItem("nomorPeserta", nomor);
+            localStorage.setItem("namaPeserta",nama);
+            localStorage.setItem("nomorPeserta",nomor);
 
-            window.location.href = "ujian.html";
+            window.location.href="ujian.html";
 
         }else{
 
@@ -119,9 +227,7 @@ async function mulaiUjian(){
 
     }catch(error){
 
-        console.log(error);
-
-        alert("Gagal mengambil data peserta");
+        alert("Gagal mengambil data");
 
     }
 
