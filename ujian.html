@@ -35,13 +35,11 @@ body{
 }
 
 .logo-area img{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    object-fit:cover;
-    background:white;
-}
-
+    width:90px;
+    height:auto;
+    object-fit:contain;
+}    
+    
 .container{
     display:flex;
     flex-wrap:wrap;
@@ -96,7 +94,11 @@ body{
 .pilihan button:hover{
     background:#1976d2;
 }
-
+    
+.pilihan button.selected{
+    background:green;
+}
+    
 .nav-soal{
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -268,10 +270,18 @@ function jawab(pilih){
 
     jawabanPeserta[indexSoal] = pilih;
 
+    document.getElementById("btnA").classList.remove("selected");
+    document.getElementById("btnB").classList.remove("selected");
+    document.getElementById("btnC").classList.remove("selected");
+    document.getElementById("btnD").classList.remove("selected");
+
+    document.getElementById("btn"+pilih)
+    .classList.add("selected");
+
     updateNavigasi();
 
 }
-
+    
 function buatNavigasi(){
 
     const nav = document.getElementById("navSoal");
