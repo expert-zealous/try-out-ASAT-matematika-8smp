@@ -111,28 +111,31 @@ button:hover{
     margin-top:25px;
     overflow:hidden;
     white-space:nowrap;
+    width:100%;
     position:relative;
-    height:25px;
 }
 
-.running span{
-    position:absolute;
-    animation:jalan 18s linear infinite;
+.running div{
+    display:inline-block;
+    padding-left:100%;
+    animation:jalan 15s linear infinite;
     color:white;
     font-size:14px;
     opacity:0.9;
 }
 
 @keyframes jalan{
+
     0%{
-        transform:translateX(100%);
+        transform:translateX(0);
     }
 
     100%{
         transform:translateX(-100%);
     }
-}
 
+}
+    
 </style>
 </head>
 <body>
@@ -164,13 +167,11 @@ Mulai Ujian
 </button>
 
 <div class="running">
-<span>
-Jl. Waru Gang 1 No 1 • Kelurahan Rembang • Kecamatan Sananwetan • Kota Blitar • CP: 085850674833
-</span>
+<div>
+Jl. Waru Gang 1 No 1 • Kelurahan Rembang • Kecamatan Sananwetan • Kota Blitar • CP: 085850674833 • Expert Zealous • Jagonya Matematika
 </div>
-
 </div>
-
+    
 <script>
 
 const csvPeserta = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=39316765&single=true&output=csv";
