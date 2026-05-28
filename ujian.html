@@ -359,7 +359,125 @@ body{
     }
 
 }
+.hasil-box{
 
+    background:white;
+
+    border-radius:20px;
+
+    padding:16px;
+
+    box-shadow:
+    0 2px 8px rgba(0,0,0,0.06);
+
+}
+
+.nilai-besar{
+
+    font-size:56px;
+
+    font-weight:bold;
+
+    color:#16a34a;
+
+    text-align:center;
+
+}
+
+.hasil-info{
+
+    text-align:center;
+
+    margin-top:8px;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+
+.review-title{
+
+    margin-top:18px;
+
+    margin-bottom:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.review-nav{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:8px;
+
+}
+
+.review-btn{
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:10px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.review-benar{
+
+    background:#16a34a;
+
+}
+
+.review-salah{
+
+    background:#dc2626;
+
+}
+
+.review-soal{
+
+    margin-top:18px;
+
+    background:#f8fafc;
+
+    border-radius:16px;
+
+    padding:14px;
+
+}
+
+.review-soal img{
+
+    width:100%;
+
+    border-radius:12px;
+
+    margin-top:10px;
+
+}
+
+.review-jawaban{
+
+    margin-top:10px;
+
+    line-height:1.8;
+
+}
+    
 </style>
 </head>
 
@@ -591,7 +709,9 @@ function selesaiUjian(){
 
     let skorDidapat = 0;
 
-    let salah = [];
+    let benar = 0;
+
+    let hasilReview = [];
 
     for(let i=0;i<soal.length;i++){
 
@@ -604,37 +724,111 @@ function selesaiUjian(){
         if(jawabanPeserta[i]==2) jawabanHuruf="C";
         if(jawabanPeserta[i]==3) jawabanHuruf="D";
 
-        if(jawabanHuruf==soal[i].kunci){
+        let status =
+        jawabanHuruf==soal[i].kunci;
+
+        if(status){
+
+            benar++;
 
             skorDidapat += soal[i].skor;
 
-        }else{
-
-            salah.push(i+1);
-
         }
+
+        hasilReview.push({
+
+            nomor:i+1,
+
+            benar:status,
+
+            soal:soal[i].teks,
+
+            gambar:soal[i].gambar,
+
+            jawabanSiswa:jawabanHuruf,
+
+            jawabanBenar:soal[i].kunci
+
+        });
 
     }
 
     let nilai =
     Math.round((skorDidapat/totalSkor)*100);
 
-    alert(
-`
-Nama Peserta : ${nama}
+    document.querySelector(".container")
+    .style.display = "none";
 
-Nomor Peserta : ${nomor}
+    document.getElementById("halamanHasil")
+    .style.display = "block";
 
-Nilai : ${nilai}
+    document.getElementById("nilaiAkhir")
+    .innerHTML = nilai;
 
-Skor Didapat : ${skorDidapat}
+    document.getElementById("hasilInfo")
+    .innerHTML =
+    `
+    <b>${nama}</b><br>
+    Nomor Peserta : ${nomor}<br>
+    Jawaban Benar : ${benar}<br>
+    Jawaban Salah : ${soal.length-benar}
+    `;
 
-Jawaban Salah :
-${salah.join(", ")}
-`
-    );
+    const nav =
+    document.getElementById("reviewNav");
 
-}
+    nav.innerHTML = "";
+
+    hasilReview.forEach((r,index)=>{
+
+        const btn =
+        document.createElement("button");
+
+        btn.innerHTML = r.nomor;
+
+        btn.className =
+        "review-btn " +
+        (r.benar
+        ? "review-benar"
+        : "review-salah");
+
+        btn.onclick = ()=>{
+
+            document.getElementById(
+            "reviewSoal"
+            ).innerHTML =
+            `
+            <div>
+            <b>Soal ${r.nomor}</b>
+            </div>
+
+            <div style="margin-top:10px;">
+            ${r.soal}
+            </div>
+
+            <img src="${r.gambar}">
+
+            <div class="review-jawaban">
+
+            Jawaban Kamu :
+            <b>${r.jawabanSiswa}</b>
+
+            <br>
+
+            Jawaban Benar :
+            <b>${r.jawabanBenar}</b>
+
+            </div>
+            `;
+
+        };
+
+        nav.appendChild(btn);
+
+    });
+
+} 
+    
 let waktu = 90*60;
 
 function updateTimer(){
@@ -659,6 +853,27 @@ setInterval(updateTimer,1000);
 loadSoal();
 
 </script>
+<div id="halamanHasil" style="display:none; padding:12px;">
 
+    <div class="hasil-box">
+
+        <div class="nilai-besar" id="nilaiAkhir">
+            100
+        </div>
+
+        <div class="hasil-info" id="hasilInfo"></div>
+
+        <div class="review-title">
+            Review Jawaban
+        </div>
+
+        <div class="review-nav" id="reviewNav"></div>
+
+        <div class="review-soal" id="reviewSoal"></div>
+
+    </div>
+
+</div>
+    
 </body>
 </html>
