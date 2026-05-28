@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -18,7 +18,15 @@
 body{
 
     font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#eef2ff,#f8fafc);
+
+    background:
+    linear-gradient(
+    135deg,
+    #eef2ff,
+    #f8fafc
+    );
+
+    color:#111827;
 
 }
 
@@ -26,17 +34,24 @@ body{
 
 .header{
 
-    background:linear-gradient(135deg,#0f172a,#1e293b);
-
-    padding:18px;
-
-    border-radius:0 0 25px 25px;
-
-    box-shadow:0 4px 15px rgba(0,0,0,0.25);
-
     position:sticky;
     top:0;
     z-index:999;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffffff,
+    #f8fafc
+    );
+
+    border-bottom:2px solid #facc15;
+
+    box-shadow:
+    0 2px 10px rgba(0,0,0,0.06),
+    0 0 10px rgba(250,204,21,0.12);
+
+    padding:8px 16px;
 
 }
 
@@ -46,7 +61,7 @@ body{
     justify-content:space-between;
     align-items:center;
 
-    gap:15px;
+    gap:12px;
 
 }
 
@@ -55,14 +70,18 @@ body{
     display:flex;
     align-items:center;
 
-    gap:15px;
+    gap:10px;
 
 }
 
 .logo{
 
-    width:220px;
+    width:135px;
+
     object-fit:contain;
+
+    filter:
+    drop-shadow(0 0 3px rgba(250,204,21,0.18));
 
 }
 
@@ -75,13 +94,13 @@ body{
 
 .brand-title{
 
-    color:#ffd700;
-
-    font-size:30px;
+    font-size:18px;
 
     font-weight:bold;
 
     font-style:italic;
+
+    color:#1e293b;
 
     line-height:1.1;
 
@@ -89,23 +108,24 @@ body{
 
 .brand-sub{
 
-    color:white;
+    font-size:11px;
 
-    font-size:16px;
+    color:#64748b;
 
-    margin-top:5px;
+    margin-top:2px;
 
 }
 
 .timer{
 
-    color:#ffd700;
-
-    font-size:40px;
+    font-size:26px;
 
     font-weight:bold;
 
-    font-style:italic;
+    color:#dc2626;
+
+    text-shadow:
+    0 0 4px rgba(220,38,38,0.15);
 
 }
 
@@ -116,13 +136,13 @@ body{
     display:flex;
     flex-wrap:wrap;
 
-    gap:18px;
+    gap:16px;
 
-    padding:18px;
+    padding:16px;
 
 }
 
-/* SOAL */
+/* MAIN */
 
 .main{
 
@@ -135,33 +155,36 @@ body{
 
     background:white;
 
-    padding:24px;
+    border-radius:20px;
 
-    border-radius:25px;
+    padding:18px;
 
-    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+    box-shadow:
+    0 3px 10px rgba(0,0,0,0.06);
 
 }
 
+/* SOAL */
+
 #nomorSoal{
 
-    font-size:42px;
+    font-size:24px;
 
-    font-style:italic;
+    font-weight:bold;
 
     color:#0f172a;
 
-    margin-bottom:20px;
+    margin-bottom:12px;
 
 }
 
 #teksSoal{
 
-    font-size:28px;
+    font-size:16px;
 
     line-height:1.6;
 
-    margin-bottom:20px;
+    margin-bottom:14px;
 
 }
 
@@ -169,9 +192,9 @@ body{
 
     width:100%;
 
-    border-radius:18px;
+    border-radius:14px;
 
-    margin-bottom:20px;
+    margin-bottom:16px;
 
 }
 
@@ -179,7 +202,7 @@ body{
 
 #pilihanJawaban{
 
-    margin-top:15px;
+    margin-top:10px;
 
 }
 
@@ -189,33 +212,36 @@ body{
 
     color:white;
 
-    padding:18px;
+    padding:12px 14px;
 
-    border-radius:18px;
+    border-radius:12px;
 
-    margin-top:15px;
+    margin-top:10px;
 
-    font-size:22px;
+    font-size:15px;
 
     font-weight:bold;
 
-    font-style:italic;
-
     cursor:pointer;
 
-    transition:0.3s;
+    transition:0.25s;
 
 }
 
 .pilihan:hover{
 
-    transform:scale(1.02);
+    transform:scale(1.01);
 
 }
 
 .pilihan.selected{
 
-    background:linear-gradient(135deg,#16a34a,#22c55e);
+    background:
+    linear-gradient(
+    135deg,
+    #16a34a,
+    #22c55e
+    );
 
 }
 
@@ -224,7 +250,7 @@ body{
 .sidebar{
 
     flex:1;
-    min-width:260px;
+    min-width:240px;
 
 }
 
@@ -232,42 +258,45 @@ body{
 
     background:white;
 
-    padding:24px;
+    border-radius:20px;
 
-    border-radius:25px;
+    padding:18px;
 
-    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+    box-shadow:
+    0 3px 10px rgba(0,0,0,0.06);
 
     position:sticky;
-    top:120px;
+    top:82px;
 
 }
 
 .info{
 
-    margin-bottom:22px;
+    line-height:1.7;
 
-    line-height:1.8;
+    margin-bottom:18px;
 
 }
 
 .info h2{
 
-    color:#0f172a;
+    font-size:18px;
 
-    margin-bottom:10px;
+    margin-bottom:6px;
+
+    color:#0f172a;
 
 }
 
+/* NAVIGASI */
+
 .nav-title{
 
-    font-size:26px;
+    font-size:18px;
 
     font-weight:bold;
 
-    font-style:italic;
-
-    margin-bottom:15px;
+    margin-bottom:12px;
 
     color:#0f172a;
 
@@ -279,7 +308,7 @@ body{
 
     grid-template-columns:repeat(5,1fr);
 
-    gap:10px;
+    gap:8px;
 
 }
 
@@ -287,33 +316,36 @@ body{
 
     border:none;
 
-    border-radius:14px;
+    border-radius:10px;
 
-    padding:12px;
+    padding:9px;
 
     background:#cbd5e1;
 
-    font-size:18px;
+    font-size:14px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:0.3s;
+    transition:0.25s;
 
 }
 
 .nav-btn:hover{
 
-    transform:scale(1.08);
+    transform:scale(1.05);
 
 }
 
 .nav-btn.active{
 
-    background:gold;
+    background:#facc15;
 
     color:black;
+
+    box-shadow:
+    0 0 8px rgba(250,204,21,0.4);
 
 }
 
@@ -331,23 +363,36 @@ body{
 
     width:100%;
 
-    margin-top:24px;
+    margin-top:18px;
 
-    padding:16px;
+    padding:13px;
 
     border:none;
 
-    border-radius:18px;
+    border-radius:14px;
 
-    background:linear-gradient(135deg,#dc2626,#ef4444);
+    background:
+    linear-gradient(
+    135deg,
+    #dc2626,
+    #ef4444
+    );
 
     color:white;
 
-    font-size:20px;
+    font-size:16px;
 
     font-weight:bold;
 
     cursor:pointer;
+
+    transition:0.25s;
+
+}
+
+#selesaiBtn:hover{
+
+    transform:scale(1.01);
 
 }
 
@@ -355,41 +400,41 @@ body{
 
 @media(max-width:768px){
 
-    .header-content{
+    .header{
 
-        flex-direction:column;
-
-        text-align:center;
-
-    }
-
-    .brand{
-
-        flex-direction:column;
+        padding:8px 12px;
 
     }
 
     .logo{
 
-        width:250px;
+        width:115px;
 
     }
 
     .brand-title{
 
-        font-size:24px;
+        font-size:16px;
+
+    }
+
+    .brand-sub{
+
+        font-size:10px;
 
     }
 
     .timer{
 
-        font-size:34px;
+        font-size:22px;
 
     }
 
     .container{
 
         flex-direction:column;
+
+        padding:12px;
 
     }
 
@@ -399,109 +444,94 @@ body{
 
     }
 
-    #nomorSoal{
-
-        font-size:30px;
-
-    }
-
-    #teksSoal{
-
-        font-size:22px;
-
-    }
-
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
 
-    <div class="header-content">
+```
+<div class="header-content">
 
-        <div class="brand">
+    <div class="brand">
 
-            <img class="logo"
-            src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
+        <img class="logo"
+        src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
 
-            <div class="brand-text">
+        <div class="brand-text">
 
-                <div class="brand-title">
-                    Jagonya Matematika
-                </div>
+            <div class="brand-title">
+                Jagonya Matematika
+            </div>
 
-                <div class="brand-sub">
-                    Les Private Matematika
-                </div>
-
+            <div class="brand-sub">
+                Les Private Matematika
             </div>
 
         </div>
 
-        <div class="timer" id="timer">
-            90:00
+    </div>
+
+    <div class="timer" id="timer">
+        90:00
+    </div>
+
+</div>
+```
+
+</div>
+
+<div class="container">
+
+```
+<div class="main">
+
+    <div class="kotak-soal">
+
+        <div id="nomorSoal">
+            Soal Nomor 1
         </div>
+
+        <div id="teksSoal"></div>
+
+        <img id="gambarSoal">
+
+        <div id="pilihanJawaban"></div>
 
     </div>
 
 </div>
 
-<!-- CONTAINER -->
+<div class="sidebar">
 
-<div class="container">
+    <div class="kotak-sidebar">
 
-    <!-- SOAL -->
+        <div class="info">
 
-    <div class="main">
+            <h2>Peserta</h2>
 
-        <div class="kotak-soal">
-
-            <div id="nomorSoal">
-                Soal Nomor 1
-            </div>
-
-            <div id="teksSoal"></div>
-
-            <img id="gambarSoal">
-
-            <div id="pilihanJawaban"></div>
+            <div id="peserta"></div>
 
         </div>
 
-    </div>
-
-    <!-- SIDEBAR -->
-
-    <div class="sidebar">
-
-        <div class="kotak-sidebar">
-
-            <div class="info">
-
-                <h2>Peserta</h2>
-
-                <div id="peserta"></div>
-
-            </div>
-
-            <div class="nav-title">
-                Navigasi Soal
-            </div>
-
-            <div class="nav-soal" id="navSoal"></div>
-
-            <button id="selesaiBtn" onclick="selesaiUjian()">
-                Selesai Ujian
-            </button>
-
+        <div class="nav-title">
+            Navigasi Soal
         </div>
 
+        <div class="nav-soal" id="navSoal"></div>
+
+        <button id="selesaiBtn" onclick="selesaiUjian()">
+            Selesai Ujian
+        </button>
+
     </div>
+
+</div>
+```
 
 </div>
 
@@ -564,7 +594,8 @@ function tampilSoal(){
     document.getElementById("gambarSoal").src =
     s.gambar;
 
-    const pilihan = document.getElementById("pilihanJawaban");
+    const pilihan =
+    document.getElementById("pilihanJawaban");
 
     pilihan.innerHTML = "";
 
@@ -692,4 +723,3 @@ loadSoal();
 
 </body>
 </html>
-```
