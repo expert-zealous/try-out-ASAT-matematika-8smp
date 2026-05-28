@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -16,7 +15,6 @@
 }
 
 body{
-
     font-family:Arial,sans-serif;
 
     background:
@@ -27,7 +25,6 @@ body{
     );
 
     color:#111827;
-
 }
 
 /* HEADER */
@@ -48,10 +45,10 @@ body{
     border-bottom:2px solid #facc15;
 
     box-shadow:
-    0 2px 10px rgba(0,0,0,0.06),
-    0 0 10px rgba(250,204,21,0.12);
+    0 2px 8px rgba(0,0,0,0.05),
+    0 0 8px rgba(250,204,21,0.10);
 
-    padding:8px 16px;
+    padding:4px 12px;
 
 }
 
@@ -61,8 +58,7 @@ body{
     justify-content:space-between;
     align-items:center;
 
-    gap:12px;
-
+    gap:10px;
 }
 
 .brand{
@@ -71,17 +67,13 @@ body{
     align-items:center;
 
     gap:10px;
-
 }
 
 .logo{
 
-    width:135px;
+    width:110px;
 
     object-fit:contain;
-
-    filter:
-    drop-shadow(0 0 3px rgba(250,204,21,0.18));
 
 }
 
@@ -89,7 +81,6 @@ body{
 
     display:flex;
     flex-direction:column;
-
 }
 
 .brand-title{
@@ -103,7 +94,6 @@ body{
     color:#1e293b;
 
     line-height:1.1;
-
 }
 
 .brand-sub{
@@ -113,12 +103,11 @@ body{
     color:#64748b;
 
     margin-top:2px;
-
 }
 
 .timer{
 
-    font-size:26px;
+    font-size:24px;
 
     font-weight:bold;
 
@@ -136,10 +125,9 @@ body{
     display:flex;
     flex-wrap:wrap;
 
-    gap:16px;
+    gap:8px;
 
-    padding:16px;
-
+    padding:8px;
 }
 
 /* MAIN */
@@ -148,19 +136,20 @@ body{
 
     flex:3;
     min-width:300px;
-
 }
+
+/* KOTAK SOAL */
 
 .kotak-soal{
 
     background:white;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    padding:18px;
+    padding:14px;
 
     box-shadow:
-    0 3px 10px rgba(0,0,0,0.06);
+    0 2px 8px rgba(0,0,0,0.05);
 
 }
 
@@ -168,14 +157,13 @@ body{
 
 #nomorSoal{
 
-    font-size:24px;
+    font-size:22px;
 
     font-weight:bold;
 
     color:#0f172a;
 
-    margin-bottom:12px;
-
+    margin-bottom:10px;
 }
 
 #teksSoal{
@@ -184,26 +172,23 @@ body{
 
     line-height:1.6;
 
-    margin-bottom:14px;
-
+    margin-bottom:10px;
 }
 
 #gambarSoal{
 
     width:100%;
 
-    border-radius:14px;
+    border-radius:12px;
 
-    margin-bottom:16px;
-
+    margin-bottom:10px;
 }
 
 /* PILIHAN */
 
 #pilihanJawaban{
 
-    margin-top:10px;
-
+    margin-top:8px;
 }
 
 .pilihan{
@@ -212,26 +197,25 @@ body{
 
     color:white;
 
-    padding:12px 14px;
+    padding:10px 12px;
 
     border-radius:12px;
 
-    margin-top:10px;
+    margin-top:8px;
 
-    font-size:15px;
+    font-size:14px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:0.25s;
+    transition:0.2s;
 
 }
 
 .pilihan:hover{
 
     transform:scale(1.01);
-
 }
 
 .pilihan.selected{
@@ -251,41 +235,37 @@ body{
 
     flex:1;
     min-width:240px;
-
 }
 
 .kotak-sidebar{
 
     background:white;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    padding:18px;
+    padding:14px;
 
     box-shadow:
-    0 3px 10px rgba(0,0,0,0.06);
+    0 2px 8px rgba(0,0,0,0.05);
 
     position:sticky;
-    top:82px;
-
+    top:70px;
 }
 
 .info{
 
     line-height:1.7;
 
-    margin-bottom:18px;
-
+    margin-bottom:14px;
 }
 
 .info h2{
 
     font-size:18px;
 
-    margin-bottom:6px;
+    margin-bottom:4px;
 
     color:#0f172a;
-
 }
 
 /* NAVIGASI */
@@ -296,10 +276,9 @@ body{
 
     font-weight:bold;
 
-    margin-bottom:12px;
+    margin-bottom:10px;
 
     color:#0f172a;
-
 }
 
 .nav-soal{
@@ -308,8 +287,7 @@ body{
 
     grid-template-columns:repeat(5,1fr);
 
-    gap:8px;
-
+    gap:6px;
 }
 
 .nav-btn{
@@ -318,24 +296,23 @@ body{
 
     border-radius:10px;
 
-    padding:9px;
+    padding:7px;
 
     background:#cbd5e1;
 
-    font-size:14px;
+    font-size:13px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:0.25s;
+    transition:0.2s;
 
 }
 
 .nav-btn:hover{
 
     transform:scale(1.05);
-
 }
 
 .nav-btn.active{
@@ -354,7 +331,6 @@ body{
     background:#22c55e;
 
     color:white;
-
 }
 
 /* TOMBOL */
@@ -363,9 +339,9 @@ body{
 
     width:100%;
 
-    margin-top:18px;
+    margin-top:14px;
 
-    padding:13px;
+    padding:11px;
 
     border:none;
 
@@ -380,20 +356,19 @@ body{
 
     color:white;
 
-    font-size:16px;
+    font-size:15px;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:0.25s;
+    transition:0.2s;
 
 }
 
 #selesaiBtn:hover{
 
     transform:scale(1.01);
-
 }
 
 /* RESPONSIVE */
@@ -401,137 +376,117 @@ body{
 @media(max-width:768px){
 
     .header{
-
-        padding:8px 12px;
-
+        padding:4px 8px;
     }
 
     .logo{
-
-        width:115px;
-
+        width:95px;
     }
 
     .brand-title{
-
         font-size:16px;
-
     }
 
     .brand-sub{
-
         font-size:10px;
-
     }
 
     .timer{
-
-        font-size:22px;
-
+        font-size:20px;
     }
 
     .container{
-
         flex-direction:column;
-
-        padding:12px;
-
+        padding:6px;
     }
 
     .kotak-sidebar{
-
         position:static;
-
     }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="header">
 
-```
-<div class="header-content">
+    <div class="header-content">
 
-    <div class="brand">
+        <div class="brand">
 
-        <img class="logo"
-        src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
+            <img class="logo"
+            src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
 
-        <div class="brand-text">
+            <div class="brand-text">
 
-            <div class="brand-title">
-                Jagonya Matematika
-            </div>
+                <div class="brand-title">
+                    Jagonya Matematika
+                </div>
 
-            <div class="brand-sub">
-                Les Private Matematika
+                <div class="brand-sub">
+                    Les Private Matematika
+                </div>
+
             </div>
 
         </div>
 
-    </div>
+        <div class="timer" id="timer">
+            90:00
+        </div>
 
-    <div class="timer" id="timer">
-        90:00
     </div>
-
-</div>
-```
 
 </div>
 
 <div class="container">
 
-```
-<div class="main">
+    <div class="main">
 
-    <div class="kotak-soal">
+        <div class="kotak-soal">
 
-        <div id="nomorSoal">
-            Soal Nomor 1
+            <div id="nomorSoal">
+                Soal Nomor 1
+            </div>
+
+            <div id="teksSoal"></div>
+
+            <img id="gambarSoal">
+
+            <div id="pilihanJawaban"></div>
+
         </div>
-
-        <div id="teksSoal"></div>
-
-        <img id="gambarSoal">
-
-        <div id="pilihanJawaban"></div>
 
     </div>
 
-</div>
+    <div class="sidebar">
 
-<div class="sidebar">
+        <div class="kotak-sidebar">
 
-    <div class="kotak-sidebar">
+            <div class="info">
 
-        <div class="info">
+                <h2>Peserta</h2>
 
-            <h2>Peserta</h2>
+                <div id="peserta"></div>
 
-            <div id="peserta"></div>
+            </div>
+
+            <div class="nav-title">
+                Navigasi Soal
+            </div>
+
+            <div class="nav-soal" id="navSoal"></div>
+
+            <button id="selesaiBtn" onclick="selesaiUjian()">
+                Selesai Ujian
+            </button>
 
         </div>
-
-        <div class="nav-title">
-            Navigasi Soal
-        </div>
-
-        <div class="nav-soal" id="navSoal"></div>
-
-        <button id="selesaiBtn" onclick="selesaiUjian()">
-            Selesai Ujian
-        </button>
 
     </div>
-
-</div>
-```
 
 </div>
 
