@@ -119,7 +119,12 @@ body{
     background:green;
     color:white;
 }
-
+    
+.nav-soal button.active{
+    border:3px solid orange;
+    transform:scale(1.1);
+}
+    
 #selesaiBtn{
     width:100%;
     margin-top:20px;
@@ -264,8 +269,26 @@ function tampilSoal(){
     document.getElementById("btnD").innerHTML =
     "D. " + s.D;
 
-}
+    // RESET WARNA SEMUA PILIHAN
+    document.getElementById("btnA").classList.remove("selected");
+    document.getElementById("btnB").classList.remove("selected");
+    document.getElementById("btnC").classList.remove("selected");
+    document.getElementById("btnD").classList.remove("selected");
 
+    // TAMPILKAN JAWABAN YANG SUDAH DIPILIH
+    const jawaban = jawabanPeserta[indexSoal];
+
+    if(jawaban){
+
+        document.getElementById("btn"+jawaban)
+        .classList.add("selected");
+
+    }
+
+    updateNavigasiAktif();
+
+}
+    
 function jawab(pilih){
 
     jawabanPeserta[indexSoal] = pilih;
@@ -322,6 +345,20 @@ function updateNavigasi(){
 
 }
 
+function updateNavigasiAktif(){
+
+    for(let i=0;i<soal.length;i++){
+
+        document.getElementById("nav"+i)
+        .classList.remove("active");
+
+    }
+
+    document.getElementById("nav"+indexSoal)
+    .classList.add("active");
+
+}
+    
 function selesaiUjian(){
 
     skor = 0;
