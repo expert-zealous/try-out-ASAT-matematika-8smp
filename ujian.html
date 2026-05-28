@@ -4,93 +4,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ujian Matematika</title>
+<title>CBT Expert Zealous</title>
 
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
     font-family:Arial;
     background:#f0f2f5;
-    margin:0;
-    padding:20px;
+}
+
+.header{
+    background:#1e88e5;
+    color:white;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-area img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    background:white;
 }
 
 .container{
-    max-width:800px;
-    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    padding:20px;
+    gap:20px;
+}
+
+.main{
+    flex:3;
+    min-width:300px;
     background:white;
     padding:20px;
     border-radius:10px;
 }
 
-#timer{
-    font-size:22px;
-    color:red;
-    font-weight:bold;
-    text-align:right;
+.sidebar{
+    flex:1;
+    min-width:250px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    height:fit-content;
 }
 
-img{
+#timer{
+    font-size:28px;
+    color:red;
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#gambarSoal{
     width:100%;
     margin-top:20px;
     border-radius:10px;
 }
 
-.pilihan{
-    margin-top:20px;
-}
-
 .pilihan button{
-    display:block;
     width:100%;
-    padding:12px;
-    margin-top:10px;
+    padding:14px;
+    margin-top:12px;
     border:none;
     background:#2196f3;
     color:white;
     cursor:pointer;
+    border-radius:8px;
     font-size:16px;
-    border-radius:5px;
+    text-align:left;
 }
 
 .pilihan button:hover{
     background:#1976d2;
 }
 
-#nextBtn{
+.nav-soal{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
     margin-top:20px;
-    padding:12px;
-    width:100%;
-    background:green;
-    color:white;
+}
+
+.nav-soal button{
+    padding:10px;
     border:none;
-    font-size:18px;
+    background:#ddd;
     cursor:pointer;
     border-radius:5px;
+    font-weight:bold;
+}
+
+.nav-soal button.answered{
+    background:green;
+    color:white;
+}
+
+#selesaiBtn{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.info{
+    margin-bottom:15px;
+    line-height:1.8;
 }
 
 </style>
 </head>
 <body>
 
+<div class="header">
+
+<div class="logo-area">
+
+<img src="https://drive.google.com/thumbnail?sz=w1000&id=1eOURv9E9HRTqPU9alLUp4ILvgfJbavN8">
+
+<div>
+<h2>Expert Zealous CBT</h2>
+<p>Ujian Matematika SMP</p>
+</div>
+
+</div>
+
+</div>
+
 <div class="container">
 
-<h2>UJIAN MATEMATIKA</h2>
+<div class="main">
 
-<div id="timer">90:00</div>
-
-<h3 id="nomorSoal"></h3>
+<h2 id="nomorSoal"></h2>
 
 <img id="gambarSoal" src="">
 
 <div class="pilihan">
-    <button onclick="jawab('A')" id="btnA"></button>
-    <button onclick="jawab('B')" id="btnB"></button>
-    <button onclick="jawab('C')" id="btnC"></button>
-    <button onclick="jawab('D')" id="btnD"></button>
+
+<button onclick="jawab('A')" id="btnA"></button>
+<button onclick="jawab('B')" id="btnB"></button>
+<button onclick="jawab('C')" id="btnC"></button>
+<button onclick="jawab('D')" id="btnD"></button>
+
 </div>
 
-<button id="nextBtn" onclick="nextSoal()">Soal Berikutnya</button>
+</div>
+
+<div class="sidebar">
+
+<div id="timer">90:00</div>
+
+<div class="info">
+<b>Peserta:</b><br>
+<span id="namaPeserta"></span>
+</div>
+
+<h3>Navigasi Soal</h3>
+
+<div class="nav-soal" id="navSoal"></div>
+
+<button id="selesaiBtn" onclick="selesaiUjian()">
+Selesai Ujian
+</button>
+
+</div>
 
 </div>
 
@@ -101,6 +201,14 @@ const csvSoal = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXt
 let soal = [];
 let indexSoal = 0;
 let skor = 0;
+
+let jawabanPeserta = [];
+
+document.getElementById("namaPeserta").innerHTML =
+localStorage.getItem("namaPeserta") +
+" (" +
+localStorage.getItem("nomorPeserta") +
+")";
 
 async function loadSoal(){
 
@@ -125,6 +233,8 @@ async function loadSoal(){
         };
 
     });
+
+    buatNavigasi();
 
     tampilSoal();
 
@@ -156,27 +266,47 @@ function tampilSoal(){
 
 function jawab(pilih){
 
-    const benar = soal[indexSoal].jawaban;
+    jawabanPeserta[indexSoal] = pilih;
 
-    if(pilih === benar){
-        skor += 10;
-    }
-
-    nextSoal();
+    updateNavigasi();
 
 }
 
-function nextSoal(){
+function buatNavigasi(){
 
-    indexSoal++;
+    const nav = document.getElementById("navSoal");
 
-    if(indexSoal < soal.length){
+    for(let i=0;i<soal.length;i++){
 
-        tampilSoal();
+        nav.innerHTML += `
+            <button id="nav${i}"
+            onclick="bukaSoal(${i})">
+            ${i+1}
+            </button>
+        `;
 
-    }else{
+    }
 
-        selesaiUjian();
+}
+
+function bukaSoal(i){
+
+    indexSoal = i;
+
+    tampilSoal();
+
+}
+
+function updateNavigasi(){
+
+    for(let i=0;i<jawabanPeserta.length;i++){
+
+        if(jawabanPeserta[i]){
+
+            document.getElementById("nav"+i)
+            .classList.add("answered");
+
+        }
 
     }
 
@@ -184,10 +314,28 @@ function nextSoal(){
 
 function selesaiUjian(){
 
+    skor = 0;
+
+    for(let i=0;i<soal.length;i++){
+
+        if(jawabanPeserta[i] === soal[i].jawaban){
+
+            skor += 10;
+
+        }
+
+    }
+
     document.body.innerHTML = `
-        <div style="padding:40px;text-align:center;font-family:Arial">
-            <h1>UJIAN SELESAI</h1>
-            <h2>Nilai Anda : ${skor}</h2>
+        <div style="
+        padding:40px;
+        text-align:center;
+        font-family:Arial">
+
+        <h1>UJIAN SELESAI</h1>
+
+        <h2>Nilai Anda : ${skor}</h2>
+
         </div>
     `;
 
@@ -200,8 +348,8 @@ function updateTimer(){
     let menit = Math.floor(waktu / 60);
     let detik = waktu % 60;
 
-    menit = menit < 10 ? "0" + menit : menit;
-    detik = detik < 10 ? "0" + detik : detik;
+    menit = menit < 10 ? "0"+menit : menit;
+    detik = detik < 10 ? "0"+detik : detik;
 
     document.getElementById("timer").innerHTML =
     menit + ":" + detik;
