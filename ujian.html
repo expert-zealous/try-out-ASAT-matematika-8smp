@@ -7,7 +7,6 @@
 <title>Try Out Expert Zealous</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -15,137 +14,335 @@
 }
 
 body{
+
     font-family:Arial;
-    background:#f0f2f5;
+    background:linear-gradient(135deg,#eef2ff,#f8fafc);
+    margin:0;
+    padding:0;
+
 }
+
+/* HEADER */
 
 .header{
-    background:gold;
-    color:black;
-    padding:15px;
+
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    padding:16px 18px;
+
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
+
+    position:sticky;
+    top:0;
+    z-index:999;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.25);
+
+    border-radius:0 0 22px 22px;
+
 }
 
-.logo-area{
+.header-kiri{
+
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:14px;
+
 }
 
-.logo-area img{
-    width:180px;
-    height:auto;
+.logo-header{
+
+    width:95px;
     object-fit:contain;
-}    
-    
+
+}
+
+.judul-header{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.judul-besar{
+
+    color:#ffd700;
+    font-size:26px;
+    font-weight:bold;
+    font-style:italic;
+    line-height:1.1;
+
+}
+
+.judul-kecil{
+
+    color:white;
+    font-size:14px;
+    opacity:0.9;
+    margin-top:3px;
+
+}
+
+.timer{
+
+    font-size:34px;
+    font-weight:bold;
+    color:#ffd700;
+    font-style:italic;
+
+}
+
+/* CONTAINER */
+
 .container{
+
     display:flex;
     flex-wrap:wrap;
-    padding:20px;
-    gap:20px;
+    gap:18px;
+
+    padding:18px;
+
 }
+
+/* SOAL */
 
 .main{
+
     flex:3;
     min-width:300px;
+
     background:white;
-    padding:20px;
-    border-radius:10px;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+
 }
 
-.sidebar{
-    flex:1;
-    min-width:250px;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    height:fit-content;
-}
+#nomorSoal{
 
-#timer{
-    font-size:28px;
-    color:red;
-    font-weight:bold;
-    text-align:center;
-    margin-bottom:20px;
+    margin-bottom:18px;
+    color:#0f172a;
+
 }
 
 #gambarSoal{
+
     width:100%;
-    margin-top:20px;
-    border-radius:10px;
+    border-radius:18px;
+
 }
 
+/* PILIHAN */
+
 .pilihan button{
+
     width:100%;
-    padding:14px;
-    margin-top:12px;
+
+    padding:16px;
+
+    margin-top:14px;
+
     border:none;
+
+    border-radius:16px;
+
     background:#2196f3;
+
     color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
     cursor:pointer;
-    border-radius:8px;
-    font-size:16px;
+
+    transition:0.3s;
+
     text-align:left;
+
 }
 
 .pilihan button:hover{
-    background:#1976d2;
+
+    transform:scale(1.02);
+
 }
-    
+
 .pilihan button.selected{
-    background:green;
-}
-    
-.nav-soal{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-top:20px;
+
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+
 }
 
-.nav-soal button{
-    padding:10px;
-    border:none;
-    background:#ddd;
-    cursor:pointer;
-    border-radius:5px;
-    font-weight:bold;
-}
+/* SIDEBAR */
 
-.nav-soal button.answered{
-    background:green;
-    color:white;
-}
-    
-.nav-soal button.active{
-    border:3px solid gold;
-    transform:scale(1.1);
-}
-    
-#selesaiBtn{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    background:red;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
+.sidebar{
+
+    flex:1;
+    min-width:250px;
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+
+    height:fit-content;
+
 }
 
 .info{
-    margin-bottom:15px;
+
+    margin-bottom:18px;
     line-height:1.8;
+
 }
 
+/* NAVIGASI */
+
+.nav-soal{
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+
+    gap:10px;
+
+    margin-top:16px;
+
+}
+
+.nav-soal button{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#cbd5e1;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+.nav-soal button.active{
+
+    background:gold;
+    color:black;
+
+    transform:scale(1.08);
+
+}
+
+.nav-soal button.answered{
+
+    background:#22c55e;
+    color:white;
+
+}
+
+#selesaiBtn{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    .header{
+
+        flex-direction:column;
+        gap:12px;
+
+        text-align:center;
+
+    }
+
+    .header-kiri{
+
+        flex-direction:column;
+
+    }
+
+    .logo-header{
+
+        width:85px;
+
+    }
+
+    .judul-besar{
+
+        font-size:22px;
+
+    }
+
+    .timer{
+
+        font-size:28px;
+
+    }
+
+}
+    
 </style>
 </head>
 <body>
+<div class="header">
 
+    <div class="header-kiri">
+
+        <img class="logo-header"
+        src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
+
+        <div class="judul-header">
+
+            <div class="judul-besar">
+                Jagonya Matematika
+            </div>
+
+            <div class="judul-kecil">
+                Les Private Matematika
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="timer" id="timer">
+        90:00
+    </div>
+
+</div>
+    
 <div class="header">
 
 <div class="logo-area">
