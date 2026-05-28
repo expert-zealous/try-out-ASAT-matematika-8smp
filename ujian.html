@@ -45,10 +45,9 @@ body{
     border-bottom:2px solid #facc15;
 
     box-shadow:
-    0 2px 8px rgba(0,0,0,0.05),
-    0 0 8px rgba(250,204,21,0.10);
+    0 2px 8px rgba(0,0,0,0.05);
 
-    padding:4px 12px;
+    padding:4px 10px;
 
 }
 
@@ -113,9 +112,6 @@ body{
 
     color:#dc2626;
 
-    text-shadow:
-    0 0 4px rgba(220,38,38,0.15);
-
 }
 
 /* CONTAINER */
@@ -146,7 +142,7 @@ body{
 
     border-radius:18px;
 
-    padding:14px;
+    padding:12px;
 
     box-shadow:
     0 2px 8px rgba(0,0,0,0.05);
@@ -154,17 +150,6 @@ body{
 }
 
 /* SOAL */
-
-#nomorSoal{
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    color:#0f172a;
-
-    margin-bottom:10px;
-}
 
 #teksSoal{
 
@@ -243,29 +228,13 @@ body{
 
     border-radius:18px;
 
-    padding:14px;
+    padding:12px;
 
     box-shadow:
     0 2px 8px rgba(0,0,0,0.05);
 
     position:sticky;
     top:70px;
-}
-
-.info{
-
-    line-height:1.7;
-
-    margin-bottom:14px;
-}
-
-.info h2{
-
-    font-size:18px;
-
-    margin-bottom:4px;
-
-    color:#0f172a;
 }
 
 /* NAVIGASI */
@@ -310,19 +279,11 @@ body{
 
 }
 
-.nav-btn:hover{
-
-    transform:scale(1.05);
-}
-
 .nav-btn.active{
 
     background:#facc15;
 
     color:black;
-
-    box-shadow:
-    0 0 8px rgba(250,204,21,0.4);
 
 }
 
@@ -362,13 +323,6 @@ body{
 
     cursor:pointer;
 
-    transition:0.2s;
-
-}
-
-#selesaiBtn:hover{
-
-    transform:scale(1.01);
 }
 
 /* RESPONSIVE */
@@ -448,10 +402,6 @@ body{
 
         <div class="kotak-soal">
 
-            <div id="nomorSoal">
-                Soal Nomor 1
-            </div>
-
             <div id="teksSoal"></div>
 
             <img id="gambarSoal">
@@ -465,14 +415,6 @@ body{
     <div class="sidebar">
 
         <div class="kotak-sidebar">
-
-            <div class="info">
-
-                <h2>Peserta</h2>
-
-                <div id="peserta"></div>
-
-            </div>
 
             <div class="nav-title">
                 Navigasi Soal
@@ -495,15 +437,17 @@ body{
 const csvSoal =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=0&single=true&output=csv";
 
+const kunciJawaban = [
+0,1,2,3,0,1,2,3,0,1,
+2,3,0,1,2,3,0,1,2,3
+];
+
 let soal = [];
 let indexSoal = 0;
 let jawabanPeserta = [];
 
 const nama = localStorage.getItem("namaPeserta");
 const nomor = localStorage.getItem("nomorPeserta");
-
-document.getElementById("peserta").innerHTML =
-"<b>"+nama+"</b><br>("+nomor+")";
 
 async function loadSoal(){
 
@@ -539,9 +483,6 @@ async function loadSoal(){
 function tampilSoal(){
 
     const s = soal[indexSoal];
-
-    document.getElementById("nomorSoal").innerHTML =
-    "Soal Nomor "+(indexSoal+1);
 
     document.getElementById("teksSoal").innerHTML =
     s.teks;
@@ -592,7 +533,7 @@ function buatNavigasi(){
 
     const nav = document.getElementById("navSoal");
 
-    for(let i=0;i<soal.length;i++){
+    for(let i=0;i<20;i++){
 
         const btn = document.createElement("button");
 
@@ -633,7 +574,7 @@ function updateNavigasi(){
 
 function updateNavigasiAktif(){
 
-    for(let i=0;i<soal.length;i++){
+    for(let i=0;i<20;i++){
 
         document.getElementById("nav"+i)
         .classList.remove("active");
@@ -647,7 +588,41 @@ function updateNavigasiAktif(){
 
 function selesaiUjian(){
 
-    alert("Terima kasih telah mengerjakan ujian 😊");
+    let benar = 0;
+
+    let salah = [];
+
+    for(let i=0;i<kunciJawaban.length;i++){
+
+        if(jawabanPeserta[i]===kunciJawaban[i]){
+
+            benar++;
+
+        }else{
+
+            salah.push(i+1);
+
+        }
+
+    }
+
+    let skor =
+    Math.round((benar/kunciJawaban.length)*100);
+
+    alert(
+`
+Nama Peserta : ${nama}
+
+Nomor Peserta : ${nomor}
+
+Skor : ${skor}
+
+Jawaban Benar : ${benar}
+
+Jawaban Salah :
+${salah.join(", ")}
+`
+    );
 
 }
 
