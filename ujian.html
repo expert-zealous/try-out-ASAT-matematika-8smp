@@ -4,31 +4,221 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ujian</title>
+<title>Ujian Matematika</title>
 
 <style>
 
 body{
     font-family:Arial;
-    padding:30px;
+    background:#f0f2f5;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+#timer{
+    font-size:22px;
+    color:red;
+    font-weight:bold;
+    text-align:right;
+}
+
+img{
+    width:100%;
+    margin-top:20px;
+    border-radius:10px;
+}
+
+.pilihan{
+    margin-top:20px;
+}
+
+.pilihan button{
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    background:#2196f3;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    border-radius:5px;
+}
+
+.pilihan button:hover{
+    background:#1976d2;
+}
+
+#nextBtn{
+    margin-top:20px;
+    padding:12px;
+    width:100%;
+    background:green;
+    color:white;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+    border-radius:5px;
 }
 
 </style>
-
 </head>
 <body>
 
-<h1>UJIAN BERHASIL DIBUKA</h1>
+<div class="container">
 
-<h3 id="peserta"></h3>
+<h2>UJIAN MATEMATIKA</h2>
+
+<div id="timer">90:00</div>
+
+<h3 id="nomorSoal"></h3>
+
+<img id="gambarSoal" src="">
+
+<div class="pilihan">
+    <button onclick="jawab('A')" id="btnA"></button>
+    <button onclick="jawab('B')" id="btnB"></button>
+    <button onclick="jawab('C')" id="btnC"></button>
+    <button onclick="jawab('D')" id="btnD"></button>
+</div>
+
+<button id="nextBtn" onclick="nextSoal()">Soal Berikutnya</button>
+
+</div>
 
 <script>
 
-const nama = localStorage.getItem("namaPeserta");
-const nomor = localStorage.getItem("nomorPeserta");
+const csvSoal = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXtW4ITfOz6qSRI_x5wTO8_JIuL9v5ibeiEdPQP0vEwG_dPJnM1UutBVZjRaDI8DSVN/pub?gid=0&single=true&output=csv";
 
-document.getElementById("peserta").innerHTML =
-"Peserta : " + nama + " (" + nomor + ")";
+let soal = [];
+let indexSoal = 0;
+let skor = 0;
+
+async function loadSoal(){
+
+    const response = await fetch(csvSoal);
+
+    const data = await response.text();
+
+    const rows = data.split("\n").slice(1);
+
+    soal = rows.map(row => {
+
+        const cols = row.split(",");
+
+        return {
+            nomor: cols[0],
+            gambar: cols[1],
+            A: cols[2],
+            B: cols[3],
+            C: cols[4],
+            D: cols[5],
+            jawaban: cols[6]?.trim()
+        };
+
+    });
+
+    tampilSoal();
+
+}
+
+function tampilSoal(){
+
+    const s = soal[indexSoal];
+
+    document.getElementById("nomorSoal").innerHTML =
+    "Soal Nomor " + s.nomor;
+
+    document.getElementById("gambarSoal").src =
+    s.gambar;
+
+    document.getElementById("btnA").innerHTML =
+    "A. " + s.A;
+
+    document.getElementById("btnB").innerHTML =
+    "B. " + s.B;
+
+    document.getElementById("btnC").innerHTML =
+    "C. " + s.C;
+
+    document.getElementById("btnD").innerHTML =
+    "D. " + s.D;
+
+}
+
+function jawab(pilih){
+
+    const benar = soal[indexSoal].jawaban;
+
+    if(pilih === benar){
+        skor += 10;
+    }
+
+    nextSoal();
+
+}
+
+function nextSoal(){
+
+    indexSoal++;
+
+    if(indexSoal < soal.length){
+
+        tampilSoal();
+
+    }else{
+
+        selesaiUjian();
+
+    }
+
+}
+
+function selesaiUjian(){
+
+    document.body.innerHTML = `
+        <div style="padding:40px;text-align:center;font-family:Arial">
+            <h1>UJIAN SELESAI</h1>
+            <h2>Nilai Anda : ${skor}</h2>
+        </div>
+    `;
+
+}
+
+let waktu = 90 * 60;
+
+function updateTimer(){
+
+    let menit = Math.floor(waktu / 60);
+    let detik = waktu % 60;
+
+    menit = menit < 10 ? "0" + menit : menit;
+    detik = detik < 10 ? "0" + detik : detik;
+
+    document.getElementById("timer").innerHTML =
+    menit + ":" + detik;
+
+    if(waktu <= 0){
+
+        selesaiUjian();
+
+    }
+
+    waktu--;
+
+}
+
+setInterval(updateTimer,1000);
+
+loadSoal();
 
 </script>
 
