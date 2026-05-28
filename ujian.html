@@ -1,12 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Try Out Expert Zealous</title>
+<title>Expert Zealous CBT</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -15,10 +17,8 @@
 
 body{
 
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     background:linear-gradient(135deg,#eef2ff,#f8fafc);
-    margin:0;
-    padding:0;
 
 }
 
@@ -27,68 +27,73 @@ body{
 .header{
 
     background:linear-gradient(135deg,#0f172a,#1e293b);
-    padding:16px 18px;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    padding:16px;
+
+    border-radius:0 0 24px 24px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
 
     position:sticky;
     top:0;
     z-index:999;
 
-    box-shadow:0 4px 15px rgba(0,0,0,0.25);
-
-    border-radius:0 0 22px 22px;
-
 }
 
-.header-kiri{
+.header-content{
 
     display:flex;
     align-items:center;
-    gap:14px;
+    justify-content:space-between;
+    gap:12px;
 
 }
 
-.logo-header{
+.brand{
 
-    width:95px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+.logo{
+
+    width:120px;
     object-fit:contain;
 
 }
 
-.judul-header{
+.brand-text{
 
     display:flex;
     flex-direction:column;
 
 }
 
-.judul-besar{
+.brand-title{
 
     color:#ffd700;
-    font-size:26px;
+    font-size:28px;
     font-weight:bold;
     font-style:italic;
     line-height:1.1;
 
 }
 
-.judul-kecil{
+.brand-sub{
 
     color:white;
-    font-size:14px;
-    opacity:0.9;
-    margin-top:3px;
+    font-size:15px;
+    margin-top:4px;
 
 }
 
 .timer{
 
-    font-size:34px;
-    font-weight:bold;
     color:#ffd700;
+    font-size:38px;
+    font-weight:bold;
     font-style:italic;
 
 }
@@ -97,11 +102,12 @@ body{
 
 .container{
 
+    padding:18px;
+
     display:flex;
     flex-wrap:wrap;
-    gap:18px;
 
-    padding:18px;
+    gap:18px;
 
 }
 
@@ -112,11 +118,15 @@ body{
     flex:3;
     min-width:300px;
 
+}
+
+.kotak-soal{
+
     background:white;
 
-    padding:22px;
+    border-radius:24px;
 
-    border-radius:22px;
+    padding:24px;
 
     box-shadow:0 4px 14px rgba(0,0,0,0.08);
 
@@ -124,54 +134,60 @@ body{
 
 #nomorSoal{
 
-    margin-bottom:18px;
     color:#0f172a;
+
+    margin-bottom:20px;
+
+    font-size:38px;
+    font-style:italic;
 
 }
 
 #gambarSoal{
 
     width:100%;
+
     border-radius:18px;
 
 }
 
 /* PILIHAN */
 
-.pilihan button{
+#pilihanJawaban{
 
-    width:100%;
+    margin-top:22px;
 
-    padding:16px;
+}
 
-    margin-top:14px;
-
-    border:none;
-
-    border-radius:16px;
+.pilihan{
 
     background:#2196f3;
 
     color:white;
 
-    font-size:18px;
+    padding:18px;
+
+    border-radius:16px;
+
+    margin-top:14px;
+
+    font-size:22px;
     font-weight:bold;
+    font-style:italic;
 
     cursor:pointer;
 
     transition:0.3s;
 
-    text-align:left;
-
 }
 
-.pilihan button:hover{
+.pilihan:hover{
 
     transform:scale(1.02);
 
 }
 
-.pilihan button.selected{
+.pilihan.selected{
 
     background:linear-gradient(135deg,#16a34a,#22c55e);
 
@@ -182,28 +198,52 @@ body{
 .sidebar{
 
     flex:1;
-    min-width:250px;
+    min-width:260px;
+
+}
+
+.kotak-sidebar{
 
     background:white;
 
-    padding:22px;
+    border-radius:24px;
 
-    border-radius:22px;
+    padding:24px;
 
     box-shadow:0 4px 14px rgba(0,0,0,0.08);
 
-    height:fit-content;
+    position:sticky;
+    top:120px;
 
 }
 
 .info{
 
-    margin-bottom:18px;
     line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.info h2{
+
+    color:#0f172a;
+    margin-bottom:10px;
 
 }
 
 /* NAVIGASI */
+
+.nav-title{
+
+    font-size:24px;
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+    color:#0f172a;
+
+}
 
 .nav-soal{
 
@@ -212,21 +252,19 @@ body{
 
     gap:10px;
 
-    margin-top:16px;
-
 }
 
-.nav-soal button{
-
-    padding:12px;
+.nav-btn{
 
     border:none;
 
     border-radius:14px;
 
+    padding:12px;
+
     background:#cbd5e1;
 
-    font-size:16px;
+    font-size:18px;
     font-weight:bold;
 
     cursor:pointer;
@@ -235,39 +273,45 @@ body{
 
 }
 
-.nav-soal button.active{
-
-    background:gold;
-    color:black;
+.nav-btn:hover{
 
     transform:scale(1.08);
 
 }
 
-.nav-soal button.answered{
+.nav-btn.active{
+
+    background:gold;
+    color:black;
+
+}
+
+.nav-btn.answered{
 
     background:#22c55e;
     color:white;
 
 }
 
+/* TOMBOL */
+
 #selesaiBtn{
 
     width:100%;
 
-    margin-top:22px;
+    margin-top:24px;
 
     padding:16px;
 
     border:none;
 
-    border-radius:16px;
+    border-radius:18px;
 
     background:linear-gradient(135deg,#dc2626,#ef4444);
 
     color:white;
 
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
 
     cursor:pointer;
@@ -276,126 +320,140 @@ body{
 
 /* RESPONSIVE */
 
-@media(max-width:700px){
+@media(max-width:768px){
 
-    .header{
+    .header-content{
 
         flex-direction:column;
-        gap:12px;
-
         text-align:center;
 
     }
 
-    .header-kiri{
+    .brand{
 
         flex-direction:column;
 
     }
 
-    .logo-header{
+    .logo{
 
-        width:85px;
+        width:180px;
 
     }
 
-    .judul-besar{
+    .brand-title{
 
-        font-size:22px;
+        font-size:24px;
 
     }
 
     .timer{
 
-        font-size:28px;
+        font-size:34px;
+
+    }
+
+    .container{
+
+        flex-direction:column;
+
+    }
+
+    .kotak-sidebar{
+
+        position:static;
 
     }
 
 }
-    
+
 </style>
 </head>
+
 <body>
+
+<!-- HEADER -->
+
 <div class="header">
 
-    <div class="header-kiri">
+    <div class="header-content">
 
-        <img class="logo-header"
-        src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
+        <div class="brand">
 
-        <div class="judul-header">
+            <img class="logo"
+            src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
 
-            <div class="judul-besar">
-                Jagonya Matematika
+            <div class="brand-text">
+
+                <div class="brand-title">
+                    Jagonya Matematika
+                </div>
+
+                <div class="brand-sub">
+                    Les Private Matematika
+                </div>
+
             </div>
 
-            <div class="judul-kecil">
-                Les Private Matematika
-            </div>
+        </div>
+
+        <div class="timer" id="timer">
+            90:00
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CONTAINER -->
+
+<div class="container">
+
+    <!-- SOAL -->
+
+    <div class="main">
+
+        <div class="kotak-soal">
+
+            <h1 id="nomorSoal">
+                Soal Nomor 1
+            </h1>
+
+            <img id="gambarSoal">
+
+            <div id="pilihanJawaban"></div>
 
         </div>
 
     </div>
 
-    <div class="timer" id="timer">
-        90:00
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="kotak-sidebar">
+
+            <div class="info">
+
+                <h2>Peserta</h2>
+
+                <div id="peserta"></div>
+
+            </div>
+
+            <div class="nav-title">
+                Navigasi Soal
+            </div>
+
+            <div class="nav-soal" id="navSoal"></div>
+
+            <button id="selesaiBtn" onclick="selesaiUjian()">
+                Selesai Ujian
+            </button>
+
+        </div>
+
     </div>
-
-</div>
-    
-<div class="header">
-
-<div class="logo-area">
-
-<img src="https://drive.google.com/thumbnail?sz=w1000&id=1r6OAqG_IeaIbkVEbi-DMJVYEy5s0-mRW">
-
-<div>
-<h2>Jagonya Matematika</h2>
-<p>Les Private Matematika</p>
-<p>CP:P.Nur_085850674833</p>    
-</div>
-
-</div>
-
-</div>
-
-<div class="container">
-
-<div class="main">
-
-<h2 id="nomorSoal"></h2>
-
-<img id="gambarSoal" src="">
-
-<div class="pilihan">
-
-<button onclick="jawab('A')" id="btnA"></button>
-<button onclick="jawab('B')" id="btnB"></button>
-<button onclick="jawab('C')" id="btnC"></button>
-<button onclick="jawab('D')" id="btnD"></button>
-
-</div>
-
-</div>
-
-<div class="sidebar">
-
-<div id="timer">90:00</div>
-
-<div class="info">
-<b>Peserta:</b><br>
-<span id="namaPeserta"></span>
-</div>
-
-<h3>Navigasi Soal</h3>
-
-<div class="nav-soal" id="navSoal"></div>
-
-<button id="selesaiBtn" onclick="selesaiUjian()">
-Selesai Ujian
-</button>
-
-</div>
 
 </div>
 
@@ -405,15 +463,13 @@ const csvSoal = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBwCh8bWn1_YXt
 
 let soal = [];
 let indexSoal = 0;
-let skor = 0;
-
 let jawabanPeserta = [];
 
-document.getElementById("namaPeserta").innerHTML =
-localStorage.getItem("namaPeserta") +
-" (" +
-localStorage.getItem("nomorPeserta") +
-")";
+const nama = localStorage.getItem("namaPeserta");
+const nomor = localStorage.getItem("nomorPeserta");
+
+document.getElementById("peserta").innerHTML =
+"<b>"+nama+"</b><br>("+nomor+")";
 
 async function loadSoal(){
 
@@ -423,18 +479,18 @@ async function loadSoal(){
 
     const rows = data.split("\n").slice(1);
 
-    soal = rows.map(row => {
+    soal = rows.map(row=>{
 
-        const cols = row.split(",");
+        const col = row.split(",");
 
-        return {
-            nomor: cols[0],
-            gambar: cols[1],
-            A: cols[2],
-            B: cols[3],
-            C: cols[4],
-            D: cols[5],
-            jawaban: cols[6]?.trim()
+        return{
+
+            gambar:col[0],
+            a:col[1],
+            b:col[2],
+            c:col[3],
+            d:col[4]
+
         };
 
     });
@@ -450,81 +506,74 @@ function tampilSoal(){
     const s = soal[indexSoal];
 
     document.getElementById("nomorSoal").innerHTML =
-    "Soal Nomor " + s.nomor;
+    "Soal Nomor "+(indexSoal+1);
 
     document.getElementById("gambarSoal").src =
     s.gambar;
 
-    document.getElementById("btnA").innerHTML =
-    "A. " + s.A;
+    const pilihan = document.getElementById("pilihanJawaban");
 
-    document.getElementById("btnB").innerHTML =
-    "B. " + s.B;
+    pilihan.innerHTML = "";
 
-    document.getElementById("btnC").innerHTML =
-    "C. " + s.C;
+    const jawaban = [s.a,s.b,s.c,s.d];
 
-    document.getElementById("btnD").innerHTML =
-    "D. " + s.D;
+    jawaban.forEach((j,index)=>{
 
-    // RESET WARNA SEMUA PILIHAN
-    document.getElementById("btnA").classList.remove("selected");
-    document.getElementById("btnB").classList.remove("selected");
-    document.getElementById("btnC").classList.remove("selected");
-    document.getElementById("btnD").classList.remove("selected");
+        const div = document.createElement("div");
 
-    // TAMPILKAN JAWABAN YANG SUDAH DIPILIH
-    const jawaban = jawabanPeserta[indexSoal];
+        div.className = "pilihan";
 
-    if(jawaban){
+        if(jawabanPeserta[indexSoal]===index){
 
-        document.getElementById("btn"+jawaban)
-        .classList.add("selected");
+            div.classList.add("selected");
 
-    }
+        }
+
+        div.innerHTML = j;
+
+        div.onclick = ()=>{
+
+            jawabanPeserta[indexSoal]=index;
+
+            tampilSoal();
+
+            updateNavigasi();
+
+        };
+
+        pilihan.appendChild(div);
+
+    });
 
     updateNavigasiAktif();
 
 }
-    
-function jawab(pilih){
 
-    jawabanPeserta[indexSoal] = pilih;
-
-    document.getElementById("btnA").classList.remove("selected");
-    document.getElementById("btnB").classList.remove("selected");
-    document.getElementById("btnC").classList.remove("selected");
-    document.getElementById("btnD").classList.remove("selected");
-
-    document.getElementById("btn"+pilih)
-    .classList.add("selected");
-
-    updateNavigasi();
-
-}
-    
 function buatNavigasi(){
 
     const nav = document.getElementById("navSoal");
 
     for(let i=0;i<soal.length;i++){
 
-        nav.innerHTML += `
-            <button id="nav${i}"
-            onclick="bukaSoal(${i})">
-            ${i+1}
-            </button>
-        `;
+        const btn = document.createElement("button");
+
+        btn.innerHTML = i+1;
+
+        btn.id = "nav"+i;
+
+        btn.className = "nav-btn";
+
+        btn.onclick = ()=>{
+
+            indexSoal = i;
+
+            tampilSoal();
+
+        };
+
+        nav.appendChild(btn);
 
     }
-
-}
-
-function bukaSoal(i){
-
-    indexSoal = i;
-
-    tampilSoal();
 
 }
 
@@ -532,7 +581,7 @@ function updateNavigasi(){
 
     for(let i=0;i<jawabanPeserta.length;i++){
 
-        if(jawabanPeserta[i]){
+        if(jawabanPeserta[i]!=null){
 
             document.getElementById("nav"+i)
             .classList.add("answered");
@@ -556,56 +605,29 @@ function updateNavigasiAktif(){
     .classList.add("active");
 
 }
-    
+
 function selesaiUjian(){
 
-    skor = 0;
-
-    for(let i=0;i<soal.length;i++){
-
-        if(jawabanPeserta[i] === soal[i].jawaban){
-
-            skor += 10;
-
-        }
-
-    }
-
-    document.body.innerHTML = `
-        <div style="
-        padding:40px;
-        text-align:center;
-        font-family:Arial">
-
-        <h1>UJIAN SELESAI</h1>
-
-        <h2>Nilai Anda : ${skor}</h2>
-
-        </div>
-    `;
+    alert("Terima kasih telah mengerjakan ujian 😊");
 
 }
 
-let waktu = 90 * 60;
+let waktu = 90*60;
 
 function updateTimer(){
 
-    let menit = Math.floor(waktu / 60);
-    let detik = waktu % 60;
+    const menit = Math.floor(waktu/60);
 
-    menit = menit < 10 ? "0"+menit : menit;
-    detik = detik < 10 ? "0"+detik : detik;
+    const detik = waktu%60;
 
     document.getElementById("timer").innerHTML =
-    menit + ":" + detik;
+    menit+":"+(detik<10?"0":"")+detik;
 
-    if(waktu <= 0){
+    if(waktu>0){
 
-        selesaiUjian();
+        waktu--;
 
     }
-
-    waktu--;
 
 }
 
@@ -617,3 +639,4 @@ loadSoal();
 
 </body>
 </html>
+```
