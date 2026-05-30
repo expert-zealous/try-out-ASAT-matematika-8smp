@@ -764,6 +764,17 @@ function selesaiUjian(){
     document.getElementById("nilaiAkhir")
     .innerHTML = nilai;
 
+    fetch(
+"https://script.google.com/macros/s/AKfycby3ZtN6M-ZaBDhesClHbJYFYXCUjpCdOoGFc5HwwNVSdsTlTmyDzulbsW5DV_a5RwWahg/exec",
+{
+    method:"POST",
+    body:JSON.stringify({
+        nama:nama,
+        nilai:nilai
+    })
+}
+);
+    
     document.getElementById("hasilInfo")
     .innerHTML =
     `
